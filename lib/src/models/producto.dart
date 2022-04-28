@@ -6,11 +6,11 @@ ProductoModel productoModelFromJson(String str) =>
 String climaModelToJson(ProductoModel data) => json.encode(data.toJson());
 
 class ProductoModel {
-  final int idProducto;
-  final String nombre;
-  final String precio;
-  final String categoria;
-  final String pathImagen;
+  int idProducto;
+  String nombre;
+  String precio;
+  String categoria;
+  String pathImagen;
 
   ProductoModel({
     this.idProducto = 0,

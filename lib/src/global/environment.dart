@@ -1,6 +1,4 @@
 class Environment {
-  //TODO HF hay que cambiar estos valores para la version Produccion
-
   static String dbase = 'Data001.db';
   static String dataOk = 'Ok';
   static String dataNOk = 'NOk';
@@ -12,4 +10,11 @@ class Environment {
   static String tableProductos = 'Productos';
   static String tableCarrito = 'Carrito';
   static String tableDetalleCarrito = 'DetalleCarrito';
+
+  ///ProductosBloc
+  static String blocOnObtieneProductos = 'blocOnObtieneProductos';
+  static String blocOnNuevaProducto = 'blocOnNuevaProducto';
+  static String blocOnModificarProducto = 'blocOnModificarProducto';
+  static String blocOnValidarProducto = 'blocOnValidarProducto';
+  static String blocOnGuardarProducto = 'blocOnGuardarProducto';
 }
