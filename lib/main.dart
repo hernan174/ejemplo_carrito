@@ -30,10 +30,9 @@ class MyApp extends StatelessWidget {
             width: double.infinity,
             //color: const Color.fromARGB(255, 153, 209, 62),
             child:  Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
+              padding: const EdgeInsets.only(bottom: 10),
               child: Column(
                 children:  [
-
                   Container(
                     decoration: const BoxDecoration(
                       color: Color.fromARGB(255, 153, 209, 62),
