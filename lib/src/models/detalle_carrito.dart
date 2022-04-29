@@ -8,7 +8,7 @@ DetalleCarritoModel productoModelFromJson(String str) =>
 String climaModelToJson(DetalleCarritoModel data) => json.encode(data.toJson());
 
 class DetalleCarritoModel {
-  int idDetalleCarrito;
+  int? idDetalleCarrito;
   int idCarrito;
   int idProducto;
   int cantidad;
@@ -16,14 +16,14 @@ class DetalleCarritoModel {
   ProductoModel? producto;
 
   DetalleCarritoModel(
-      {this.idDetalleCarrito = 0,
+      {this.idDetalleCarrito,
       this.idCarrito = 0,
       this.idProducto = 0,
       this.cantidad = 0});
 
   factory DetalleCarritoModel.fromJson(Map<String, dynamic> json) =>
       DetalleCarritoModel(
-        idDetalleCarrito: json["IdDetalleCarrito"],
+        idDetalleCarrito: json["IdDetalleCarrito"] ?? '',
         idCarrito: json["IdCarrito"],
         idProducto: json["IdProducto"],
         cantidad: json["Cantidad"],

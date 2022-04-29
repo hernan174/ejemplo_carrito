@@ -31,8 +31,7 @@ class ProductoBloc extends Bloc<ProductoEvent, ProductoState> {
     String error = '';
 
     ///Se obtiene todos los registros de la base de datos
-    final respuesta =
-        await productoDb.obtieneProductos(where: '', whereArgs: []);
+    final respuesta = await productoDb.obtieneProductos();
 
     ///Si no hubo problema en la consulta ingresa a analizar la respuesta con los datos
     if (respuesta.containsKey(Environment.dataOk)) {

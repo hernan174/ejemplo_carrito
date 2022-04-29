@@ -65,8 +65,8 @@ class CarritoDb implements CarritoDbEvent {
 
   @override
   Future<Map<String, dynamic>> obtieneCarritos(
-      {required String where,
-      required List<Object> whereArgs,
+      {String? where,
+      List<Object>? whereArgs,
       String? orderBy,
       int? limit}) async {
     final database = await DbaseDb().database;

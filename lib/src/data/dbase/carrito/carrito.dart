@@ -7,8 +7,8 @@ class Carrito extends Dbase {
   Carrito(String table, Database database) : super(table, database);
 
   Future<Map<String, dynamic>>? obtieneCarritos(
-      {required String where,
-      required List<Object> whereArgs,
+      {String? where,
+      List<Object>? whereArgs,
       String? orderBy,
       int? limit}) async {
     try {

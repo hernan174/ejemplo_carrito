@@ -35,7 +35,7 @@ class CarritoBloc extends Bloc<CarritoEvent, CarritoState> {
     String error = '';
 
     ///Se obtiene todos los registros de la base de datos
-    final respuesta = await carritoDb.obtieneCarritos(where: '', whereArgs: []);
+    final respuesta = await carritoDb.obtieneCarritos();
 
     ///Si no hubo problema en la consulta ingresa a analizar la respuesta con los datos
     if (respuesta.containsKey(Environment.dataOk)) {
@@ -75,15 +75,15 @@ class CarritoBloc extends Bloc<CarritoEvent, CarritoState> {
       error = 'Ingrese la cantidad de items';
     }
     if (error.isEmpty) {
-      if (event.producto.idProducto < 0) {
+      if (event.producto.idProducto != null && event.producto.idProducto! < 0) {
         error = 'Falta determinar el producto';
       }
     }
     if (error.isEmpty) {
       DetalleCarritoModel nuevoItem = DetalleCarritoModel();
       nuevoItem.cantidad = event.cantidad;
-      nuevoItem.idCarrito = state.carrito.idCarrito;
-      nuevoItem.idProducto = event.producto.idProducto;
+      nuevoItem.idCarrito = state.carrito.idCarrito ?? 0;
+      nuevoItem.idProducto = event.producto.idProducto ?? 0;
       lstItemCarrito.add(nuevoItem);
     }
 

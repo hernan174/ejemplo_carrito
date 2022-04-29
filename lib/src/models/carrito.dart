@@ -8,20 +8,20 @@ CarritoModel productoModelFromJson(String str) =>
 String climaModelToJson(CarritoModel data) => json.encode(data.toJson());
 
 class CarritoModel {
-  int idCarrito;
+  int? idCarrito;
   int cantItems;
   int total;
   List<DetalleCarritoModel> detalleCarrito;
 
   CarritoModel(
-      {this.idCarrito = 0,
+      {this.idCarrito,
       this.cantItems = 0,
       this.total = 0,
       List<DetalleCarritoModel>? detalleCarrito})
       : detalleCarrito = detalleCarrito ?? [];
 
   factory CarritoModel.fromJson(Map<String, dynamic> json) => CarritoModel(
-        idCarrito: json["IdCarrito"],
+        idCarrito: json["IdCarrito"] ?? 0,
         cantItems: json["CantItems"],
         total: json["Total"],
       );
