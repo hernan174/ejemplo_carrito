@@ -1,3 +1,4 @@
+import 'package:app_pedidos/src/widgets/custom_drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:app_pedidos/src/bloc/blocs.dart';
@@ -11,6 +12,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   @override
   void initState() {
     super.initState();
@@ -24,28 +26,31 @@ class _HomeScreenState extends State<HomeScreen> {
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
-            appBar: const CustomAppBarWidget(),
-            body: Container(
-              decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 228, 228, 228)),
-              width: double.infinity,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: Column(
-                  children: [
-                    const HeaderWidget(),
-                    const TabsWidget(),
-                    Expanded(
-                        child: ListView(children: [
-                      ...state.lstProductos.entries
-                          .map((e) => ItemHomeViewWidget(
-                              categoria: e.key, productos: e.value))
-                          .toList()
-                    ]))
-                  ],
-                ),
+          drawer: const CustomDrawer(),
+          appBar: const CustomAppBarWidget(),
+          body: Container(
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 228, 228, 228)
+            ),
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Column(
+                children: [
+                  const HeaderWidget(),
+                  const TabsWidget(),
+                  Expanded(
+                      child: ListView(children: [
+                    ...state.lstProductos.entries
+                        .map((e) => ItemHomeViewWidget(
+                            categoria: e.key, productos: e.value))
+                        .toList()
+                  ]))
+                ],
               ),
-            ));
+            ),
+          )
+        );
       },
     );
   }
