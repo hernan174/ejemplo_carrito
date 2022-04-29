@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:app_pedidos/src/widgets/custom_drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,7 +25,19 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return BlocConsumer<ProductoBloc, ProductoState>(
       listenWhen: (previous, current) => !current.isWorking,
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state.accion == 'blocOnNuevaProducto' ||
+            state.accion == 'blocOnModificarProducto') {
+          Navigator.pushNamed(context, 'NewProduct');
+          log('======>Navigator.pushNamed(context, NewProduct)');
+        }
+        if (state.accion == 'blocOnGuardarProducto' && state.error.isEmpty) {
+          Navigator.pop(context);
+        }
+        if (state.accion == 'blocOnValidarProducto' && state.error.isEmpty) {
+          context.read<ProductoBloc>().add(OnGuardarProducto());
+        }
+      },
       builder: (context, state) {
         return Scaffold(
           drawer: const CustomDrawer(),

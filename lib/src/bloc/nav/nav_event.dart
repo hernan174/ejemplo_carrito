@@ -4,6 +4,6 @@ part of 'nav_bloc.dart';
 abstract class NavEvent {}
 
 class GetScreen extends NavEvent{
-  String screen;
+  final String screen;
   GetScreen(this.screen);
 }
