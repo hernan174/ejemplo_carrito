@@ -1,5 +1,7 @@
+import 'package:app_pedidos/src/bloc/producto/producto_bloc.dart';
+import 'package:app_pedidos/src/pages/home.dart';
 import 'package:flutter/material.dart';
-import 'package:app_pedidos/src/widgets/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,52 +15,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    //Size size = MediaQuery.of(context).size;
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Delivery - App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-        appBar: const CustomAppBarWidget(),
-        body: SingleChildScrollView(
-          child: Container(
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 212, 212, 212)
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_)=> ProductoBloc()),
+      ],
+      child: Builder(builder: (context) {
+          context.read<ProductoBloc>().add(OnObtieneProductos());
+
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Delivery - App',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
             ),
-            width: double.infinity,
-            child:  Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: Column(
-                
-                children:  [
-                  Container(
-                    decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 153, 209, 62),
-                      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
-                    ),
-                    child: Column(
-                      children: const [
-                        BusquedaWidget(),
-                        PromoBannerWidget(),
-                      ],
-                    ),
-                  ),
-                  
-                  const TabsWidget(),
-                  const ItemHomeViewWidget(categoria: 'algo', productos: [],),
-
-
-
-                ],
-              ),
-            ),
-          ),
-        )
-        
-      ),
+            home: const HomeScreen()
+          );
+        },  
+      )
     );
   }
 }
+

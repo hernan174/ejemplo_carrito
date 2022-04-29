@@ -6,3 +6,4 @@ export 'package:app_pedidos/src/widgets/btn_centro_widget.dart';
 export 'package:app_pedidos/src/widgets/btn_izq_widget.dart';
 export 'package:app_pedidos/src/widgets/btn_der_widget.dart';
 export 'package:app_pedidos/src/widgets/tabs_widget.dart';
+export 'package:app_pedidos/src/widgets/header_widget.dart';

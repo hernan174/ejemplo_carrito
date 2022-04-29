@@ -1,5 +1,5 @@
-import 'package:app_pedidos/src/models/producto.dart';
 import 'package:flutter/material.dart';
+import 'package:app_pedidos/src/models/producto.dart';
 
 class ItemHomeViewWidget extends StatelessWidget {
   const ItemHomeViewWidget(
@@ -11,6 +11,7 @@ class ItemHomeViewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const ExpandCategorias();
+
   }
 }
 
