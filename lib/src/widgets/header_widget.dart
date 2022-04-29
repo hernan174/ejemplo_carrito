@@ -16,7 +16,7 @@ class HeaderWidget extends StatelessWidget {
           child: Container(
             width: 100,
             height: 30,
-            color: const Color.fromARGB(255, 212, 212, 212)
+            color: const Color.fromARGB(255, 228, 228, 228)
             ),
         ),
         Positioned(
@@ -25,7 +25,7 @@ class HeaderWidget extends StatelessWidget {
           child: Container(
             width: 100,
             height: 30,
-            color: const Color.fromARGB(255, 212, 212, 212)
+            color: const Color.fromARGB(255, 228, 228, 228)
             ),
         ),
         Container(
