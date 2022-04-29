@@ -14,7 +14,7 @@ class BtnIzqWidget extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.only(top: 5),
         decoration: const BoxDecoration(
-          color:  Color.fromARGB(255, 212, 212, 212),
+          color:  Color.fromARGB(255, 228, 228, 228),
           borderRadius: BorderRadius.only(topRight: Radius.circular(15)),
         ),
         alignment: Alignment.topCenter,

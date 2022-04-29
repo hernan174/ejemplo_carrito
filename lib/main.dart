@@ -10,30 +10,22 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  
-
   @override
   Widget build(BuildContext context) {
-
-
     return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_)=> ProductoBloc()),
-      ],
-      child: Builder(builder: (context) {
-          context.read<ProductoBloc>().add(OnObtieneProductos());
-
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Delivery - App',
-            theme: ThemeData(
-              primarySwatch: Colors.blue,
-            ),
-            home: const HomeScreen()
-          );
-        },  
-      )
-    );
+        providers: [
+          BlocProvider(create: (_) => ProductoBloc()),
+        ],
+        child: Builder(
+          builder: (context) {
+            return MaterialApp(
+                debugShowCheckedModeBanner: false,
+                title: 'Delivery - App',
+                theme: ThemeData(
+                  primarySwatch: Colors.blue,
+                ),
+                home: const HomeScreen());
+          },
+        ));
   }
 }
-

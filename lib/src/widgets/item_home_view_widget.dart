@@ -2,62 +2,61 @@ import 'package:flutter/material.dart';
 import 'package:app_pedidos/src/models/producto.dart';
 
 class ItemHomeViewWidget extends StatelessWidget {
-  const ItemHomeViewWidget(
-      {Key? key, required this.categoria, required this.productos})
-      : super(key: key);
+  const ItemHomeViewWidget({
+    Key? key,
+    required this.categoria,
+    required this.productos,
+  }) : super(key: key);
 
   final String categoria;
   final List<ProductoModel> productos;
+
   @override
   Widget build(BuildContext context) {
-    return const ExpandCategorias();
-
+    return ExpandCategorias(categoria: categoria, productos: productos);
   }
 }
 
 class Item {
   Item({
-    required this.expandedValue,
-    required this.headerValue,
+    required this.productos,
+    required this.categoria,
     this.isExpanded = false,
   });
 
-  Widget expandedValue;
-  String headerValue;
+  List<ProductoModel> productos;
+  String categoria;
   bool isExpanded;
 }
 
-List<Item> generateItems(int numberOfItems) {
-  return List<Item>.generate(numberOfItems, (int index) {
-    return Item(
-      headerValue: 'Panel $index',
-      expandedValue: Wrap(children: const [
-        Text('element1  '),
-        Text('element2  '),
-        Text('element3  '),
-        Text('element4  '),
-        Text('element5  '),
-        Text('element6  '),
-        Text('element7  '),
-        ]),
-    );
-  });
-}
-
 class ExpandCategorias extends StatefulWidget {
-  const ExpandCategorias({Key? key}) : super(key: key);
+  final String categoria;
+  final List<ProductoModel> productos;
+
+  const ExpandCategorias({
+    Key? key,
+    required this.categoria,
+    required this.productos,
+  }) : super(key: key);
 
   @override
   State<ExpandCategorias> createState() => _ExpandCategoriasState();
 }
 
 class _ExpandCategoriasState extends State<ExpandCategorias> {
-  final List<Item> _data = generateItems(8);
+  late Item _data;
+
+  @override
+  void initState() {
+    super.initState();
+    _data = Item(productos: widget.productos, categoria: widget.categoria);
+  }
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
+        margin: const EdgeInsets.only(bottom: 10),
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: _buildPanel(),
       ),
@@ -65,35 +64,83 @@ class _ExpandCategoriasState extends State<ExpandCategorias> {
   }
 
   Widget _buildPanel() {
-    return ExpansionPanelList(
-      expansionCallback: (int index, bool isExpanded) {
-        setState(() {
-          _data[index].isExpanded = !isExpanded;
-        });
-      },
-      children: _data.map<ExpansionPanel>((Item item) {
-        return ExpansionPanel(
-          headerBuilder: (BuildContext context, bool isExpanded) {
-            return ListTile(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-              title: Text(item.headerValue),
-            );
-          },
-          body: ListTile(
-              title: item.expandedValue,
-              subtitle:
-                  const Text('To delete this panel, tap the trash can icon'),
-              trailing: const Icon(Icons.delete),
-              onTap: () {
-                setState(() {
-                  _data.removeWhere((Item currentItem) => item == currentItem);
-                });
-              }),
-          isExpanded: item.isExpanded,
-        );
-      }).toList(),
+    return Theme(
+            data: Theme.of(context).copyWith(cardColor: Color.fromARGB(255, 233, 245, 215)),
+            child: ExpansionPanelList(
+        expansionCallback: (int index, bool isExpanded) {
+          setState(() {
+            _data.isExpanded = !isExpanded;
+          });
+        },
+        children: [
+          ExpansionPanel(
+            headerBuilder: (BuildContext context, bool isExpanded) {
+              return ListTile(
+                leading: const Icon(Icons.grass_sharp),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                title: Text(_data.categoria, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+              );
+            },
+            body: _ItemExpancionPanel(productos: _data.productos),
+            isExpanded: _data.isExpanded,
+          )
+        ])
     );
+    
+  }
+}
+
+class _ItemExpancionPanel extends StatelessWidget {
+  const _ItemExpancionPanel({
+    Key? key,
+    required this.productos,
+  }) : super(key: key);
+
+  final List<ProductoModel> productos;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      width: double.infinity,
+      color: Colors.white,
+      child: Wrap(
+        children: productos
+            .map((e) => _ItemProducto(
+                  producto: e,
+                ))
+            .toList(),
+      ),
+    );
+  }
+}
+
+class _ItemProducto extends StatelessWidget {
+  const _ItemProducto({
+    Key? key,
+    required this.producto,
+  }) : super(key: key);
+  final ProductoModel producto;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(bottom: 10),
+      
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          
+          children: [
+            const Image(
+              width: 60,
+              image: AssetImage('assets/comida.png')
+            ),
+            Text(producto.nombre),
+          ],
+        ),
+      )
+      );
   }
 }

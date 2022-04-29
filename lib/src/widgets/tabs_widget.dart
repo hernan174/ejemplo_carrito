@@ -11,7 +11,7 @@ class TabsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
-      color: const Color.fromARGB(255, 212, 212, 212),
+      color: const Color.fromARGB(255, 228, 228, 228),
       width: double.infinity,
       height: 40,
       child: Row(
