@@ -9,8 +9,8 @@ class Producto extends Dbase {
   Producto(String table, Database database) : super(table, database);
 
   FutureOr<Map<String, dynamic>>? obtieneProductos(
-      {required String where,
-      required List<Object> whereArgs,
+      {String? where,
+      List<Object>? whereArgs,
       String? orderBy,
       int? limit}) async {
     try {

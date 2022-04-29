@@ -6,14 +6,14 @@ ProductoModel productoModelFromJson(String str) =>
 String climaModelToJson(ProductoModel data) => json.encode(data.toJson());
 
 class ProductoModel {
-  int idProducto;
+  int? idProducto;
   String nombre;
   String precio;
   String categoria;
   String pathImagen;
 
   ProductoModel({
-    this.idProducto = 0,
+    this.idProducto,
     this.nombre = '',
     this.precio = '',
     this.categoria = '',
@@ -21,7 +21,7 @@ class ProductoModel {
   });
 
   factory ProductoModel.fromJson(Map<String, dynamic> json) => ProductoModel(
-        idProducto: json["IdProducto"],
+        idProducto: json["IdProducto"] ?? 0,
         nombre: json["Nombre"],
         precio: json["Precio"],
         categoria: json["Categoria"],

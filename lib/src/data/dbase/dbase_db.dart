@@ -31,7 +31,7 @@ class DbaseDb {
         onCreate: (Database db, int version) async {
       await db.execute('''
           CREATE TABLE ${Environment.tableProductos}(
-            idProducto INTEGER,
+            IdProducto INTEGER,
             Nombre TEXT,
             Precio TEXT,
             Categoria TEXT,
@@ -42,7 +42,7 @@ class DbaseDb {
 
       await db.execute('''
           CREATE TABLE ${Environment.tableCarrito}(
-            idCarrito TEXT,
+            IdCarrito TEXT,
             CantItems TEXT,
             Total TEXT,
             PRIMARY KEY(idCarrito)
@@ -51,10 +51,10 @@ class DbaseDb {
 
       await db.execute('''
           CREATE TABLE ${Environment.tableDetalleCarrito}(
-            idDetalleCarrito INTEGER,
-            idCarrito TEXT,
-            idProducto TEXT,
-            cantidad TEXT,
+            IdDetalleCarrito INTEGER,
+            IdCarrito TEXT,
+            IdProducto TEXT,
+            Cantidad TEXT,
             PRIMARY KEY(idDetalleCarrito)
           )
       ''');

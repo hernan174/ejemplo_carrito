@@ -66,8 +66,8 @@ class ProductoDb implements ProductoDbEvent {
 
   @override
   Future<Map<String, dynamic>> obtieneProductos(
-      {required String where,
-      required List<Object> whereArgs,
+      {String? where,
+      List<Object>? whereArgs,
       String? orderBy,
       int? limit}) async {
     final database = await DbaseDb().database;
