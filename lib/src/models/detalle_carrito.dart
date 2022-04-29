@@ -1,15 +1,19 @@
 import 'dart:convert';
 
+import 'package:app_pedidos/src/models/producto.dart';
+
 DetalleCarritoModel productoModelFromJson(String str) =>
     DetalleCarritoModel.fromJson(json.decode(str));
 
 String climaModelToJson(DetalleCarritoModel data) => json.encode(data.toJson());
 
 class DetalleCarritoModel {
-  final int idDetalleCarrito;
-  final int idCarrito;
-  final int idProducto;
-  final int cantidad;
+  int idDetalleCarrito;
+  int idCarrito;
+  int idProducto;
+  int cantidad;
+
+  ProductoModel? producto;
 
   DetalleCarritoModel(
       {this.idDetalleCarrito = 0,

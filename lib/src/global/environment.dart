@@ -17,4 +17,11 @@ class Environment {
   static String blocOnModificarProducto = 'blocOnModificarProducto';
   static String blocOnValidarProducto = 'blocOnValidarProducto';
   static String blocOnGuardarProducto = 'blocOnGuardarProducto';
+
+  ///CarritoBloc
+  static String blocOnObtieneCarritos = 'blocOnObtieneCarritos';
+  static String blocOnNuevaCarrito = 'blocOnNuevaCarrito';
+  static String blocOnAgregaItemCarrito = 'blocOnAgregaItemCarrito';
+  static String blocOnObtieneItemsCarrito = 'blocOnObtieneItemsCarrito';
+  static String blocOnGuardarCarrito = 'blocOnGuardarCarrito';
 }

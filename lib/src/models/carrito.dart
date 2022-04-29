@@ -8,10 +8,10 @@ CarritoModel productoModelFromJson(String str) =>
 String climaModelToJson(CarritoModel data) => json.encode(data.toJson());
 
 class CarritoModel {
-  final int idCarrito;
-  final int cantItems;
-  final int total;
-  final List<DetalleCarritoModel> detalleCarrito;
+  int idCarrito;
+  int cantItems;
+  int total;
+  List<DetalleCarritoModel> detalleCarrito;
 
   CarritoModel(
       {this.idCarrito = 0,

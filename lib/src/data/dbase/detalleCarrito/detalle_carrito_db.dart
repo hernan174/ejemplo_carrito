@@ -10,7 +10,7 @@ class DetalleCarritoDb implements DetalleCarritoDbEvent {
       {required String where,
       required List whereArgs,
       required DetalleCarritoModel data,
-      required String origen}) async {
+      String? origen}) async {
     final database = await DbaseDb().database;
     final db = DetalleCarrito(Environment.tableCarrito, database!);
     final respuesta = await db.guardar(
@@ -65,5 +65,17 @@ class DetalleCarritoDb implements DetalleCarritoDbEvent {
     final database = await DbaseDb().database;
     final db = DetalleCarrito(Environment.tableDetalleCarrito, database!);
     return Future.value(db.eliminar(where: where, whereArgs: whereArgs));
+  }
+
+  @override
+  Future<Map<String, dynamic>> obtieneDetalleCarrito(
+      {required String where,
+      required List<Object> whereArgs,
+      String? orderBy,
+      int? limit}) async {
+    final database = await DbaseDb().database;
+    final db = DetalleCarrito(Environment.tableDetalleCarrito, database!);
+    return Future.value(db.obtieneDetalleCarrito(
+        where: where, whereArgs: whereArgs, orderBy: orderBy, limit: limit));
   }
 }
