@@ -132,7 +132,7 @@ class _ItemProducto extends StatelessWidget {
       onTap: (() {
         context
           .read<ProductoBloc>()
-          .add(OnModificarProducto(producto.idProducto.toString()));
+          .add(OnModificarProducto(producto.idProducto!));
       }),
       child: Container(
         padding: const EdgeInsets.only(bottom: 10),

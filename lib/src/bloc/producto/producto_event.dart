@@ -12,7 +12,7 @@ class OnNuevaProducto extends ProductoEvent {
 }
 
 class OnModificarProducto extends ProductoEvent {
-  final String idProducto;
+  final int idProducto;
 
   OnModificarProducto(this.idProducto);
 }
