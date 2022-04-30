@@ -1,5 +1,5 @@
 import 'dart:developer';
-
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -126,12 +126,18 @@ class _NewProductScreenState extends State<NewProductScreen> {
                           String imagePath = pickedFile.path;
                           tempPath = imagePath;
                           setState(() {
-                            
+                            tempPath;
                           });
                         },
                         icon: const Icon(Icons.camera_alt_outlined, size: 40, color: Colors.grey,),
                       ),
                     ],
+                  ),
+                  Container(
+                    child: Image.file(
+                      File(tempPath),
+                      scale: 0.5,
+                    )
                   ),
                   ElevatedButton(
                     style: ButtonStyle(
@@ -154,7 +160,7 @@ class _NewProductScreenState extends State<NewProductScreen> {
                         .add(OnValidarProducto( productoState ));
 
                     }
-                  )
+                  ),
                 ],
               ),
             )

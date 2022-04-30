@@ -55,7 +55,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     setState(() {
                       context.read<NavBloc>().add(GetScreen('NewProduct'));
                     });        
-                    Navigator.pushReplacementNamed(context, 'NewProduct');
+                    Navigator.pushNamed(context, 'NewProduct');
                     log('======new producto');
                   } else {
                     Navigator.pop(context);
