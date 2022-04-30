@@ -31,12 +31,9 @@ class _HomeScreenState extends State<HomeScreen> {
           Navigator.pushNamed(context, 'NewProduct');
           log('======>Navigator.pushNamed(context, NewProduct)');
         }
-        if (state.accion == 'blocOnGuardarProducto' && state.error.isEmpty) {
-          Navigator.pop(context);
-        }
-        if (state.accion == 'blocOnValidarProducto' && state.error.isEmpty) {
-          context.read<ProductoBloc>().add(OnGuardarProducto());
-        }
+        setState(() {
+          context.read<NavBloc>().add(GetScreen('Home'));
+        });
       },
       builder: (context, state) {
         return Scaffold(

@@ -39,14 +39,15 @@ class ProductoBloc extends Bloc<ProductoEvent, ProductoState> {
 
       ///Map de las categorias a un set se hace esto para evitar duplicados
       final Set<String> categorias =
-          lstProductosAux.map((e) => e.categoria).toSet();
+          lstProductosAux.map((e) => e.categoria.toLowerCase()).toSet();
 
       ///Recorremos la lista de categoria
       for (String cat in categorias) {
         ///Ahora en base a la respuesta de la base de datos sobre los productos filtro unicamente los productos
         ///que sean igual a la categoria actual
-        final productoEnCategoria =
-            lstProductosAux.where((e) => e.categoria == cat).toList();
+        final productoEnCategoria = lstProductosAux
+            .where((e) => e.categoria.toLowerCase() == cat.toLowerCase())
+            .toList();
         lstProductos[cat] = productoEnCategoria;
       }
     }

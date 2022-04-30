@@ -1,5 +1,5 @@
-import 'package:app_pedidos/src/data/dbase/productos/producto.dart';
-import 'package:app_pedidos/src/models/producto.dart';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,12 +29,23 @@ class _NewProductScreenState extends State<NewProductScreen> {
     return Scaffold(
       appBar: const CustomAppBarWidget(),
       backgroundColor: const Color.fromARGB(255, 233, 245, 215),
-      body: BlocBuilder<ProductoBloc, ProductoState>(
+      body: BlocConsumer<ProductoBloc, ProductoState>(
+        listenWhen: (previous, current) => !current.isWorking,
+        listener: (context, state) {
+          if (state.accion == 'blocOnValidarProducto' && state.error.isEmpty) {
+            context.read<ProductoBloc>().add(OnGuardarProducto());
+            log('======validar producto');
+          }  
+          if (state.accion == 'blocOnGuardarProducto' && state.error.isEmpty) {
+            Navigator.pushNamed(context, 'Home');
+            log('======guardar producto');
+          }
+        },
         builder: (context, state) {
           return WillPopScope(
             onWillPop: () async {
-            return !state.isWorking;
-          },
+              return !state.isWorking;
+            },
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(

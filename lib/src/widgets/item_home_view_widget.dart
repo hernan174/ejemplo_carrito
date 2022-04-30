@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:app_pedidos/src/models/producto.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../bloc/blocs.dart';
 
 class ItemHomeViewWidget extends StatelessWidget {
   const ItemHomeViewWidget({
@@ -65,7 +68,7 @@ class _ExpandCategoriasState extends State<ExpandCategorias> {
 
   Widget _buildPanel() {
     return Theme(
-            data: Theme.of(context).copyWith(cardColor: Color.fromARGB(255, 233, 245, 215)),
+            data: Theme.of(context).copyWith(cardColor: const Color.fromARGB(255, 233, 245, 215)),
             child: ExpansionPanelList(
         expansionCallback: (int index, bool isExpanded) {
           setState(() {
@@ -125,22 +128,26 @@ class _ItemProducto extends StatelessWidget {
   final ProductoModel producto;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(bottom: 10),
-      
+    return GestureDetector(
+      onTap: (() {
+        context
+          .read<ProductoBloc>()
+          .add(OnModificarProducto(producto.idProducto.toString()));
+      }),
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.only(bottom: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           
           children: [
             const Image(
               width: 60,
-              image: AssetImage('assets/comida.png')
+              image: AssetImage('assets/comida.png') 
             ),
             Text(producto.nombre),
           ],
         ),
-      )
-      );
+      ),
+    );
   }
 }

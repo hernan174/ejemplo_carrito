@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:app_pedidos/src/bloc/blocs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,7 +17,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     return BlocBuilder<NavBloc, NavState>(
       builder: ((context, state) {
         return Drawer(
-          backgroundColor: Color.fromARGB(255, 150, 185, 97),
+          backgroundColor: const Color.fromARGB(255, 150, 185, 97),
           child: ListView(
             physics: const BouncingScrollPhysics(),
             padding: EdgeInsets.zero,
@@ -37,14 +39,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: Colors.white),
                 ),
                 onTap: () {
-                  // if (state.screen != 'Home') {
-                  //   setState(() {
-                  //     context.read<NavBloc>().add(GetScreen('Home'));
-                  //   });        
-                  //   Navigator.pushReplacementNamed(context, 'Home');
-                  // } else {
-                  //   Navigator.pop(context);
-                  // }
                 },
               ),
                         ListTile(
@@ -62,6 +56,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       context.read<NavBloc>().add(GetScreen('NewProduct'));
                     });        
                     Navigator.pushReplacementNamed(context, 'NewProduct');
+                    log('======new producto');
                   } else {
                     Navigator.pop(context);
                   }
