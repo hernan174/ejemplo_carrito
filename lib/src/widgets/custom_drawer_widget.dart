@@ -39,6 +39,15 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: Colors.white),
                 ),
                 onTap: () {
+                  if (state.screen != 'Home') {
+                    setState(() {
+                      context.read<NavBloc>().add(GetScreen('Home'));
+                    });        
+                    Navigator.pushNamed(context, 'Home');
+                    log('======Home');
+                  } else {
+                    Navigator.pop(context);
+                  }
                 },
               ),
                         ListTile(

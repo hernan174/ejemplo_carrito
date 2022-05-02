@@ -4,3 +4,4 @@ export 'package:app_pedidos/src/widgets/promo_banner_widget.dart';
 export 'package:app_pedidos/src/widgets/custom_appbar_widget.dart';
 export 'package:app_pedidos/src/widgets/tabs_widget.dart';
 export 'package:app_pedidos/src/widgets/header_widget.dart';
+export 'package:app_pedidos/src/widgets/custom_drawer_widget.dart';
