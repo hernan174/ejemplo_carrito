@@ -140,23 +140,26 @@ class _NewProductScreenState extends State<NewProductScreen> {
                           ),
                         ],
                       ),
-                      Container(
-                          padding: const EdgeInsets.all(15),
-                          child: (state.producto.pathImagen == '' &&
-                                  modeloVisual.pathImagen == '')
-                              ? const Image(
-                                  width: 200,
-                                  height: 200,
-                                  image: AssetImage('assets/default.png'))
-                              : (state.producto.pathImagen != '')
-                                  ? Image.file(
-                                      File(state.producto.pathImagen),
-                                      scale: 0.2,
-                                    )
-                                  : Image.file(
-                                      File(modeloVisual.pathImagen),
-                                      scale: 0.2,
-                                    )),
+                      Hero(
+                        tag: state.producto.idProducto!,
+                        child: Container(
+                            padding: const EdgeInsets.all(15),
+                            child: (state.producto.pathImagen == '' &&
+                                    modeloVisual.pathImagen == '')
+                                ? const Image(
+                                    width: 200,
+                                    height: 200,
+                                    image: AssetImage('assets/default.png'))
+                                : (state.producto.pathImagen != '')
+                                    ? Image.file(
+                                        File(state.producto.pathImagen),
+                                        scale: 0.2,
+                                      )
+                                    : Image.file(
+                                        File(modeloVisual.pathImagen),
+                                        scale: 0.2,
+                                      )),
+                      ),
                       ElevatedButton(
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:app_pedidos/src/models/producto.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -140,9 +142,17 @@ class _ItemProducto extends StatelessWidget {
         child: Column(
           
           children: [
-            const Image(
-              width: 60,
-              image: AssetImage('assets/comida.png') 
+            Hero(
+              tag: producto.idProducto!,
+              child: 
+              (producto.pathImagen != '')
+              ? Image.file(
+                File(producto.pathImagen),
+                height: 100,
+                width: 100,
+                alignment: Alignment.bottomCenter,
+                fit: BoxFit.cover,)
+              : const Image (height: 100, image: AssetImage('assets/comida.png'))
             ),
             Text(producto.nombre),
           ],
