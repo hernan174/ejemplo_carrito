@@ -1,10 +1,8 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:app_pedidos/src/models/producto.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../bloc/blocs.dart';
+import 'package:app_pedidos/src/models/producto.dart';
+import 'package:app_pedidos/src/bloc/blocs.dart';
 
 class ItemHomeViewWidget extends StatelessWidget {
   const ItemHomeViewWidget({
