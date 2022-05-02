@@ -60,15 +60,16 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: Colors.white),
                 ),
                 onTap: () {
-                  if (state.screen != 'NewProduct') {
+                  // if (state.screen != 'NewProduct') {
                     setState(() {
                       context.read<NavBloc>().add(GetScreen('NewProduct'));
+                      context.read<ProductoBloc>().add(OnNuevaProducto());
                     });        
-                    Navigator.pushNamed(context, 'NewProduct');
+                    // Navigator.pushNamed(context, 'NewProduct');
                     log('======new producto');
-                  } else {
+                  // } else {
                     Navigator.pop(context);
-                  }
+                  // }
                 },
               ),
             ],

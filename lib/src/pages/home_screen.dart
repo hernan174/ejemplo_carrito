@@ -1,6 +1,4 @@
 import 'dart:developer';
-
-import 'package:app_pedidos/src/widgets/custom_drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:app_pedidos/src/bloc/blocs.dart';
@@ -53,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const HeaderWidget(),
                   const TabsWidget(),
                   Expanded(
-                      child: ListView(children: [
+                      child: TabBarView(children: [
                     ...state.lstProductos.entries
                         .map((e) => ItemHomeViewWidget(
                             categoria: e.key, productos: e.value))

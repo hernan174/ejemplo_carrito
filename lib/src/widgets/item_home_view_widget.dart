@@ -140,20 +140,18 @@ class _ItemProducto extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 10),
         margin: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
-          
           children: [
-            Hero(
-              tag: producto.idProducto!,
-              child: 
-              (producto.pathImagen != '')
-              ? Image.file(
-                File(producto.pathImagen),
-                height: 100,
-                width: 100,
-                alignment: Alignment.bottomCenter,
-                fit: BoxFit.cover,)
-              : const Image (height: 100, image: AssetImage('assets/comida.png'))
-            ),
+            (producto.pathImagen == '')
+            ? const Image (height: 200, image: AssetImage('assets/comida.png'))
+            : Hero(
+                tag: producto.idProducto!,
+                child: Image.file(
+                  File(producto.pathImagen),
+                  height: 100,
+                  width: 100,
+                  alignment: Alignment.bottomCenter,
+                  fit: BoxFit.cover,)
+              ),
             Text(producto.nombre),
           ],
         ),

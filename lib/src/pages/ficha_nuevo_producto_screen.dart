@@ -24,9 +24,9 @@ class _NewProductScreenState extends State<NewProductScreen> {
     super.initState();
     final productoState = context.read<ProductoBloc>().state.producto;
     modeloVisual.idProducto = productoState.idProducto;
-    modeloVisual.categoria = productoState.categoria;
-    modeloVisual.nombre = productoState.nombre;
-    modeloVisual.precio = productoState.precio;
+    modeloVisual.categoria  = productoState.categoria;
+    modeloVisual.nombre     = productoState.nombre;
+    modeloVisual.precio     = productoState.precio;
     modeloVisual.pathImagen = productoState.pathImagen;
   }
 
@@ -49,6 +49,7 @@ class _NewProductScreenState extends State<NewProductScreen> {
               Navigator.pop(context);
               log('======guardar producto');
             }
+
           },
           builder: (context, state) {
             return WillPopScope(
@@ -61,59 +62,15 @@ class _NewProductScreenState extends State<NewProductScreen> {
                     children: [
                       Row(
                         children: [
-                          Expanded(
-                            child: TextFormField(
-                                style: const TextStyle(
-                                  fontSize: 15,
-                                ),
-                                decoration: const InputDecoration(
-                                  labelText: 'Nombre del producto',
-                                ),
-                                initialValue: state.producto.nombre,
-                                onChanged: (value) {
-                                  modeloVisual.nombre = value;
-                                  setState(() {});
-                                }),
-                          ),
+                          ProdNombreWidget(state),
                           const SizedBox(width: 20),
-                          Container(
-                            width: 90,
-                            child: TextFormField(
-                              style: const TextStyle(
-                                fontSize: 15,
-                              ),
-                              decoration: const InputDecoration(
-                                labelText: 'Precio',
-                              ),
-                              initialValue: state.producto.precio,
-                              keyboardType: TextInputType.number,
-                              inputFormatters: [
-                                FilteringTextInputFormatter.allow(
-                                    RegExp(r'^(\d+)?\.?\d{0,2}'))
-                              ],
-                              onChanged: (value) {
-                                modeloVisual.precio = value;
-                                setState(() {});
-                              },
-                            ),
-                          )
+                          ProdPrecioWidget(state)
                         ],
                       ),
                       Row(
                         children: [
-                          Expanded(
-                            child: TextFormField(
-                                style: const TextStyle(
-                                  fontSize: 15,
-                                ),
-                                decoration: const InputDecoration(
-                                  labelText: 'Categoria',
-                                ),
-                                initialValue: state.producto.categoria,
-                                onChanged: (value) {
-                                  modeloVisual.categoria = value;
-                                }),
-                          ),
+                          ProdCategoriaWidget(state),
+                          
                           const SizedBox(width: 20),
                           IconButton(
                             alignment: Alignment.bottomCenter,
@@ -124,7 +81,7 @@ class _NewProductScreenState extends State<NewProductScreen> {
                                 imageQuality: 100,
                               );
                               if (pickedFile == null) {
-                                print('No selecciono ninguna imagen');
+                                log('No selecciono ninguna imagen');
                                 return;
                               }
                               setState(() {
@@ -140,47 +97,112 @@ class _NewProductScreenState extends State<NewProductScreen> {
                           ),
                         ],
                       ),
-                      Hero(
-                        tag: state.producto.idProducto!,
-                        child: Container(
-                            padding: const EdgeInsets.all(15),
-                            child: (state.producto.pathImagen == '' &&
-                                    modeloVisual.pathImagen == '')
-                                ? const Image(
-                                    width: 200,
-                                    height: 200,
-                                    image: AssetImage('assets/default.png'))
-                                : (state.producto.pathImagen != '')
-                                    ? Image.file(
-                                        File(state.producto.pathImagen),
-                                        scale: 0.2,
-                                      )
-                                    : Image.file(
-                                        File(modeloVisual.pathImagen),
-                                        scale: 0.2,
-                                      )),
-                      ),
-                      ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(
-                                const Color.fromARGB(255, 153, 209, 62)),
-                          ),
-                          child: const SizedBox(
-                              width: double.infinity,
-                              child: Center(
-                                  child: Text(
-                                'Guardar',
-                                style: TextStyle(color: Colors.white),
-                              ))),
-                          onPressed: () {
-                            context
-                                .read<ProductoBloc>()
-                                .add(OnValidarProducto(modeloVisual));
-                          }),
+                      const SizedBox(height: 15,),
+
+                      (modeloVisual.pathImagen.isEmpty)
+                      ? const Image (height: 200, image: AssetImage('assets/default.png'))
+                      : Hero(
+                          tag: modeloVisual.idProducto ?? '',
+                          child: Image.file(
+                            File(modeloVisual.pathImagen),
+                            height: 200,
+                          )
+                        ),
+                      
+                      BtnGuardarWidget(modeloVisual: modeloVisual),
                     ],
                   ),
                 ));
           },
-        ));
+        )
+      );
+  }
+
+  Widget ProdCategoriaWidget(ProductoState state) {
+    return Expanded(
+      child: TextFormField(
+        style: const TextStyle(
+          fontSize: 15,
+        ),
+        decoration: const InputDecoration(
+          labelText: 'Categoria',
+        ),
+        initialValue: state.producto.categoria,
+        onChanged: (value) {
+          modeloVisual.categoria = value;
+        }),
+    );
+  }
+
+  Widget ProdPrecioWidget(ProductoState state) {
+    return Container(
+      width: 90,
+      child: TextFormField(
+        style: const TextStyle(
+          fontSize: 15,
+        ),
+        decoration: const InputDecoration(
+          labelText: 'Precio',
+        ),
+        initialValue: state.producto.precio,
+        keyboardType: TextInputType.number,
+        inputFormatters: [
+          FilteringTextInputFormatter.allow(
+              RegExp(r'^(\d+)?\.?\d{0,2}'))
+        ],
+        onChanged: (value) {
+          modeloVisual.precio = value;
+          setState(() {});
+        },
+      ),
+    );
+  }
+
+  Widget ProdNombreWidget(ProductoState state) {
+    return Expanded(
+      child: TextFormField(
+          style: const TextStyle(
+            fontSize: 15,
+          ),
+          decoration: const InputDecoration(
+            labelText: 'Nombre del producto',
+          ),
+          initialValue: state.producto.nombre,
+          onChanged: (value) {
+            modeloVisual.nombre = value;
+            setState(() {});
+          }),
+    );
+  }
+
+}
+
+class BtnGuardarWidget extends StatelessWidget {
+  const BtnGuardarWidget({
+    Key? key,
+    required this.modeloVisual,
+  }) : super(key: key);
+
+  final ProductoModel modeloVisual;
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(
+              const Color.fromARGB(255, 153, 209, 62)),
+        ),
+        child: const SizedBox(
+            width: double.infinity,
+            child: Center(
+                child: Text(
+              'Guardar',
+              style: TextStyle(color: Colors.white),
+            ))),
+        onPressed: () {
+          context
+              .read<ProductoBloc>()
+              .add(OnValidarProducto(modeloVisual));
+        });
   }
 }
