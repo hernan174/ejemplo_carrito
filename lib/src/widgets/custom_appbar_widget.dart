@@ -18,10 +18,15 @@ class CustomAppBarWidget extends StatelessWidget implements PreferredSizeWidget{
       elevation: 0,
       backgroundColor: const Color.fromARGB(255, 153, 209, 62),
       title: const Text('Delivery App'),
-      actions: const [
+      actions: [
         Padding(
-          padding: EdgeInsets.only(right: 20),
-          child: Icon(Icons.shopping_cart, size: 30,),
+          padding: const EdgeInsets.only(right: 20),
+          child: IconButton(
+            icon: const Icon(Icons.shopping_cart),
+            onPressed: () {
+              Navigator.pushNamed(context, 'Carrito');
+             },
+            ),
         )
       ],
     );

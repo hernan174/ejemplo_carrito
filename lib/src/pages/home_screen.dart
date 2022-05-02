@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const HeaderWidget(),
                   const TabsWidget(),
                   Expanded(
-                      child: TabBarView(children: [
+                      child: ListView(children: [
                     ...state.lstProductos.entries
                         .map((e) => ItemHomeViewWidget(
                             categoria: e.key, productos: e.value))

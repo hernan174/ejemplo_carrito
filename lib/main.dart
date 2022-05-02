@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
                 routes: {
                   'Home': (_) => const HomeScreen(),
                   'NewProduct': (_) => const NewProductScreen(),
+                  'Carrito' : (_) => const CarritoScreen(),
                 });
           },
         ));
