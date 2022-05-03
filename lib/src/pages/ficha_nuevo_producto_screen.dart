@@ -1,10 +1,10 @@
 import 'dart:developer';
 import 'dart:io';
-import 'package:app_pedidos/src/models/producto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:app_pedidos/src/models/producto.dart';
 import 'package:app_pedidos/src/bloc/blocs.dart';
 import 'package:app_pedidos/src/widgets/widgets.dart';
 
@@ -39,6 +39,7 @@ class _NewProductScreenState extends State<NewProductScreen> {
         body: BlocConsumer<ProductoBloc, ProductoState>(
           listenWhen: (previous, current) => !current.isWorking,
           listener: (context, state) {
+            
             if (state.accion == 'blocOnValidarProducto' &&
                 state.error.isEmpty) {
               context.read<ProductoBloc>().add(OnGuardarProducto());
@@ -62,14 +63,14 @@ class _NewProductScreenState extends State<NewProductScreen> {
                     children: [
                       Row(
                         children: [
-                          ProdNombreWidget(state),
+                          prodNombreWidget(state),
                           const SizedBox(width: 20),
-                          ProdPrecioWidget(state)
+                          prodPrecioWidget(state)
                         ],
                       ),
                       Row(
                         children: [
-                          ProdCategoriaWidget(state),
+                          prodCategoriaWidget(state),
                           
                           const SizedBox(width: 20),
                           IconButton(
@@ -118,7 +119,7 @@ class _NewProductScreenState extends State<NewProductScreen> {
       );
   }
 
-  Widget ProdCategoriaWidget(ProductoState state) {
+  Widget prodCategoriaWidget(ProductoState state) {
     return Expanded(
       child: TextFormField(
         style: const TextStyle(
@@ -134,7 +135,7 @@ class _NewProductScreenState extends State<NewProductScreen> {
     );
   }
 
-  Widget ProdPrecioWidget(ProductoState state) {
+  Widget prodPrecioWidget(ProductoState state) {
     return Container(
       width: 90,
       child: TextFormField(
@@ -158,7 +159,7 @@ class _NewProductScreenState extends State<NewProductScreen> {
     );
   }
 
-  Widget ProdNombreWidget(ProductoState state) {
+  Widget prodNombreWidget(ProductoState state) {
     return Expanded(
       child: TextFormField(
           style: const TextStyle(

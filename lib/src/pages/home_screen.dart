@@ -54,7 +54,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         .map((e) => ItemHomeViewWidget(
                             categoria: e.key, productos: e.value))
                         .toList()
-                  ]))
+                    ])
+                  )
                 ],
               ),
             ),

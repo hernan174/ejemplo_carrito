@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:app_pedidos/src/models/producto.dart';
@@ -151,6 +152,7 @@ class _ItemProducto extends StatelessWidget {
                   fit: BoxFit.cover,)
               ),
             Text(producto.nombre),
+            Text('\$' + producto.precio, style: const TextStyle(fontFamily: 'Serif', fontWeight: FontWeight.w900),)
           ],
         ),
       ),

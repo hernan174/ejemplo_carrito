@@ -21,9 +21,10 @@ class _CarritoScreenState extends State<CarritoScreen> {
 
       },
       builder: (context, state) {
-        return const Scaffold(
+        return Scaffold(
           body: Center(
             child: TabLayout(
+              tabLength: state.lstProductos.length
 
             ),
           ),
