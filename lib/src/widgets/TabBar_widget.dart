@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:app_pedidos/src/bloc/blocs.dart';
@@ -61,19 +62,20 @@ import 'package:app_pedidos/src/bloc/blocs.dart';
                     'Mis Compras', 
                     style: TextStyle(fontSize:20, color: Colors.white, fontWeight: FontWeight.bold),),
                 ),
-                Expanded(
-                  child: Column(
-                    children: [
-                      ...state.lstProductos.entries
-                          .map((e) => const Expanded(
-                            child: MiTabBarwidget(
-                              // tabs: [Text(e.key, style: const TextStyle(color: Colors.blue),)],
-                              // tabsContent: [ListTile(title: Text(e.value.toString(), style: const TextStyle(color: Colors.black),))],
-                            ),
-                          ))
-                          .toList()
-                    ],
-                  ),
+                const Expanded(
+                  child: MiTabBarwidget(),
+                  // child: Column(
+                  //   children: [
+                  //     ...state.lstProductos.entries
+                  //         .map((e) => const Expanded(
+                  //           child: MiTabBarwidget(
+                  //             // tabs: [Text(e.key, style: const TextStyle(color: Colors.blue),)],
+                  //             // tabsContent: [ListTile(title: Text(e.value.toString(), style: const TextStyle(color: Colors.black),))],
+                  //           ),
+                  //         ))
+                  //         .toList()
+                  //   ],
+                  // ),
                 )
 
               ],
@@ -130,7 +132,22 @@ class MiTabBarwidget extends StatelessWidget {
       body: TabBarView(
         physics: const BouncingScrollPhysics(),
         children: lstProducts.values
-                    .map((e) => Text(e.toString()))
+                    .map((e) {
+                       return Column(
+                         children: [
+                           ListTile(
+                             leading: Image.file(
+                                File(e[0].pathImagen),
+                                height: 100,
+                                width: 100,
+                                alignment: Alignment.bottomCenter,
+                                fit: BoxFit.cover,
+                              ),
+                             title: Text(e[0].nombre)
+                             ),
+                         ]
+                         );
+                       },)
                     .toList(),
       ),
     );
