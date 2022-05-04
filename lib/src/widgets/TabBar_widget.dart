@@ -1,9 +1,9 @@
 import 'dart:developer';
 import 'dart:io';
+import 'package:app_pedidos/src/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:app_pedidos/src/bloc/blocs.dart';
-import 'package:app_pedidos/src/widgets/widgets.dart';
 
   
   class TabLayout extends StatefulWidget {
@@ -113,30 +113,47 @@ class MiTabBarwidget extends StatelessWidget {
           },
           enableFeedback: true,
           tabs: lstProducts.keys
-                    .map((e) => Container(
-                        margin: const EdgeInsets.symmetric(vertical: 10),
-                        padding: const EdgeInsets.symmetric(vertical: 5),
-                        child: Text(e.toString().toUpperCase()))
-                      )
-                    .toList(),
+            .map((e) => Container(
+                margin: const EdgeInsets.symmetric(vertical: 10),
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                child: Text(e.toString().toUpperCase()))
+              )
+            .toList(),
         ),
       body: TabBarView(
         physics: const BouncingScrollPhysics(),
-        children:
-        [...lstProducts.values
-            .map((e) => ListTile(
-                leading: Image.file(
-                  File(e[0].pathImagen),
-                  height: 100,
-                  width: 100,
-                  alignment: Alignment.bottomCenter,
-                  fit: BoxFit.cover,
-                ),
-                title: Text(e[0].nombre),
-                subtitle: Text('\$'+e[0].precio, style: const TextStyle(fontStyle: FontStyle.italic),),
-                trailing: const BtnMasMenosWidget(),
-              ))             
-        ]
+        children: lstProducts.values
+                    .map((e) => ListView.builder(
+                      itemCount: e.length,
+                      itemBuilder: (_, i) => ListTile(
+                        leading: Image.file(
+                          File(e[i].pathImagen),
+                          height: 100,
+                          width: 100,
+                          alignment: Alignment.bottomCenter,
+                          fit: BoxFit.cover,
+                        ),
+                        title: Text(e[i].nombre),
+                        subtitle: Text('\$' + e[i].precio),
+                        trailing: const BtnMasMenosWidget(),
+                      )
+                      ),).toList()
+
+
+        // [...lstProducts.values
+        //     .map((e) => ListTile(
+        //         leading: Image.file(
+        //           File(e[0].pathImagen),
+        //           height: 100,
+        //           width: 100,
+        //           alignment: Alignment.bottomCenter,
+        //           fit: BoxFit.cover,
+        //         ),
+        //         title: Text(e[0].nombre),
+        //         subtitle: Text('\$'+e[0].precio, style: const TextStyle(fontStyle: FontStyle.italic),),
+        //         trailing: const BtnMasMenosWidget(),
+        //       ))             
+        // ]
 
         // lstProducts.values
         //   .map((e) {
