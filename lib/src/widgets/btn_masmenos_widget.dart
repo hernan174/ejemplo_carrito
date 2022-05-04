@@ -14,7 +14,7 @@ class BtnMasMenosWidget extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
             decoration: const BoxDecoration(
-              color:  Colors.green,
+              color:  Color.fromARGB(255, 153, 209, 62),
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(15),
                 bottomLeft: Radius.circular(15)),
@@ -29,7 +29,7 @@ class BtnMasMenosWidget extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
             decoration: const BoxDecoration(
-              color:  Colors.green,
+              color:  Color.fromARGB(255, 153, 209, 62),
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(15),
                 bottomRight: Radius.circular(15)),

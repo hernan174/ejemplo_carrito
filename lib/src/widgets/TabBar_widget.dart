@@ -56,7 +56,7 @@ import 'package:app_pedidos/src/bloc/blocs.dart';
               children: [
                 Container(
                   alignment: Alignment.center,
-                  color: Colors.green,
+                  color: const Color.fromARGB(255, 153, 209, 62),
                   height: 50,
                   width: double.infinity,
                   child: const Text(
@@ -100,12 +100,12 @@ class MiTabBarwidget extends StatelessWidget {
           unselectedLabelColor: Colors.grey,
           labelStyle: const TextStyle(fontWeight: FontWeight.bold,),
           unselectedLabelStyle: const TextStyle(fontStyle: FontStyle.italic),
-          indicatorColor: Colors.green,
+          indicatorColor: const Color.fromARGB(255, 153, 209, 62),
           indicatorSize: TabBarIndicatorSize.tab,
           indicatorPadding: const EdgeInsets.all(5),
           indicator: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: Colors.green,
+            color: const Color.fromARGB(255, 153, 209, 62),
           ),
           isScrollable: true,
           physics: const BouncingScrollPhysics(),
