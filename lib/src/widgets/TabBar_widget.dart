@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:app_pedidos/src/bloc/blocs.dart';
+import 'package:app_pedidos/src/widgets/widgets.dart';
 
   
   class TabLayout extends StatefulWidget {
@@ -64,20 +65,7 @@ import 'package:app_pedidos/src/bloc/blocs.dart';
                 ),
                 const Expanded(
                   child: MiTabBarwidget(),
-                  // child: Column(
-                  //   children: [
-                  //     ...state.lstProductos.entries
-                  //         .map((e) => const Expanded(
-                  //           child: MiTabBarwidget(
-                  //             // tabs: [Text(e.key, style: const TextStyle(color: Colors.blue),)],
-                  //             // tabsContent: [ListTile(title: Text(e.value.toString(), style: const TextStyle(color: Colors.black),))],
-                  //           ),
-                  //         ))
-                  //         .toList()
-                  //   ],
-                  // ),
                 )
-
               ],
             ),
           ),
@@ -108,11 +96,10 @@ class MiTabBarwidget extends StatelessWidget {
 
     return Scaffold(
       appBar: TabBar(
-          labelColor: Colors.black,
+          labelColor: Colors.white,
           unselectedLabelColor: Colors.grey,
           labelStyle: const TextStyle(fontWeight: FontWeight.bold,),
           unselectedLabelStyle: const TextStyle(fontStyle: FontStyle.italic),
-          indicatorWeight: 10,
           indicatorColor: Colors.green,
           indicatorSize: TabBarIndicatorSize.tab,
           indicatorPadding: const EdgeInsets.all(5),
@@ -126,29 +113,49 @@ class MiTabBarwidget extends StatelessWidget {
           },
           enableFeedback: true,
           tabs: lstProducts.keys
-                    .map((e) => Text(e.toString()))
+                    .map((e) => Container(
+                        margin: const EdgeInsets.symmetric(vertical: 10),
+                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        child: Text(e.toString().toUpperCase()))
+                      )
                     .toList(),
         ),
       body: TabBarView(
         physics: const BouncingScrollPhysics(),
-        children: lstProducts.values
-                    .map((e) {
-                       return Column(
-                         children: [
-                           ListTile(
-                             leading: Image.file(
-                                File(e[0].pathImagen),
-                                height: 100,
-                                width: 100,
-                                alignment: Alignment.bottomCenter,
-                                fit: BoxFit.cover,
-                              ),
-                             title: Text(e[0].nombre)
-                             ),
-                         ]
-                         );
-                       },)
-                    .toList(),
+        children:
+        [...lstProducts.values
+            .map((e) => ListTile(
+                leading: Image.file(
+                  File(e[0].pathImagen),
+                  height: 100,
+                  width: 100,
+                  alignment: Alignment.bottomCenter,
+                  fit: BoxFit.cover,
+                ),
+                title: Text(e[0].nombre),
+                subtitle: Text('\$'+e[0].precio, style: const TextStyle(fontStyle: FontStyle.italic),),
+                trailing: const BtnMasMenosWidget(),
+              ))             
+        ]
+
+        // lstProducts.values
+        //   .map((e) {
+        //      return Column(
+        //        children: [
+        //          ListTile(
+        //            leading: Image.file(
+        //               File(e[0].pathImagen),
+        //               height: 100,
+        //               width: 100,
+        //               alignment: Alignment.bottomCenter,
+        //               fit: BoxFit.cover,
+        //             ),
+        //            title: Text(e[0].nombre)
+        //            ),
+        //        ]
+        //        );
+        //      },)
+        //   .toList(),
       ),
     );
   }
