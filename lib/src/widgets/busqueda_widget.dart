@@ -20,7 +20,7 @@ class BusquedaWidget extends StatelessWidget {
         decoration: const InputDecoration(
           icon: Padding(
             padding: EdgeInsets.only(left: 10),
-            child: Icon(Icons.search, size: 30, color: Color.fromARGB(255, 153, 209, 62),),
+            child: Icon(Icons.search, size: 30, color: Colors.lightGreen,),
           ),
           hintStyle: TextStyle(fontSize: 16, color: Colors.grey, fontWeight: FontWeight.w500),
           hintText: 'Realice una busqueda',

@@ -191,7 +191,7 @@ class BtnGuardarWidget extends StatelessWidget {
     return ElevatedButton(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(
-              const Color.fromARGB(255, 153, 209, 62)),
+              Colors.lightGreen),
         ),
         child: const SizedBox(
             width: double.infinity,

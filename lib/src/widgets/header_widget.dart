@@ -30,7 +30,7 @@ class HeaderWidget extends StatelessWidget {
         ),
         Container(
           decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 153, 209, 62),
+            color: Colors.lightGreen,
             borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
           ),
           child: Column(

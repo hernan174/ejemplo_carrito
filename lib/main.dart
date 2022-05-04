@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
                 debugShowCheckedModeBanner: false,
                 title: 'Delivery - App',
                 theme: ThemeData(
-                  primarySwatch: Colors.blue,
+                  primarySwatch: Colors.lightGreen,
                 ),
                 initialRoute: 'Home',
                 routes: {

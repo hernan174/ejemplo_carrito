@@ -35,7 +35,7 @@ class BtnIzqWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: Color.fromARGB(255, 153, 209, 62),
+        color: Colors.lightGreen,
       ),
       child: Container(
         padding: const EdgeInsets.only(top: 5),
@@ -65,7 +65,7 @@ class BtnDerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: Color.fromARGB(255, 153, 209, 62),
+        color: Colors.lightGreen,
       ),
       child: Container(
         padding: const EdgeInsets.only(top: 5),
@@ -96,7 +96,7 @@ class BtnCentroWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       decoration: const BoxDecoration(
-        color: Color.fromARGB(255, 153, 209, 62),
+        color: Colors.lightGreen,
         borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15)),
       ),
       alignment: Alignment.topCenter,

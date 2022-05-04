@@ -83,7 +83,7 @@ class _ExpandCategoriasState extends State<ExpandCategorias> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
-                title: Text(_data.categoria, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                title: Text(_data.categoria, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87),),
               );
             },
             body: _ItemExpancionPanel(productos: _data.productos),

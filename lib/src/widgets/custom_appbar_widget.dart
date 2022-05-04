@@ -12,17 +12,17 @@ class CustomAppBarWidget extends StatelessWidget implements PreferredSizeWidget{
   Widget build(BuildContext context) {
     return AppBar(
       leading: IconButton(
-        icon: const Icon(Icons.menu),
+        icon: const Icon(Icons.menu, color: Colors.white,),
         onPressed: () => Scaffold.of(context).openDrawer(),
         ),
       elevation: 0,
-      backgroundColor: const Color.fromARGB(255, 153, 209, 62),
-      title: const Text('Delivery App'),
+      backgroundColor: Colors.lightGreen,
+      title: const Text('Delivery App', style: TextStyle(color: Colors.white),),
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 20),
           child: IconButton(
-            icon: const Icon(Icons.shopping_cart),
+            icon: const Icon(Icons.shopping_cart, color: Colors.white,),
             onPressed: () {
               Navigator.pushNamed(context, 'Carrito');
              },
