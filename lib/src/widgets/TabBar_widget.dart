@@ -22,6 +22,7 @@ import 'package:app_pedidos/src/bloc/blocs.dart';
 
     
     late TabController _tabController;
+    List lstCarrito = [1,2,3];
 
   _TabLayoutState();
   
@@ -65,6 +66,16 @@ import 'package:app_pedidos/src/bloc/blocs.dart';
                 ),
                 const Expanded(
                   child: MiTabBarwidget(),
+                ),
+                Container(
+                  color: Colors.orange,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Items: ' + lstCarrito.length.toString(), style: const TextStyle( fontSize: 26, color: Colors.white),),
+                      Text('Total: \$' + (lstCarrito.length*3).toString(), style: const TextStyle( fontSize: 26, color: Colors.white),),
+                    ]
+                  ),
                 )
               ],
             ),

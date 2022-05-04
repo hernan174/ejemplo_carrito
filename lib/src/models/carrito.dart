@@ -1,6 +1,5 @@
-import 'package:app_pedidos/src/models/detalle_carrito.dart';
-
 import 'dart:convert';
+import 'package:app_pedidos/src/models/detalle_carrito.dart';
 
 CarritoModel productoModelFromJson(String str) =>
     CarritoModel.fromJson(json.decode(str));

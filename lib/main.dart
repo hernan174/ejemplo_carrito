@@ -1,8 +1,8 @@
-import 'package:app_pedidos/src/bloc/simple_bloc_observer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:app_pedidos/src/bloc/blocs.dart';
 import 'package:app_pedidos/src/pages/pages.dart';
+import 'package:app_pedidos/src/bloc/simple_bloc_observer.dart';
 
 void main() {
   BlocOverrides.runZoned(() async {
@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(create: (_) => ProductoBloc()),
           BlocProvider(create: (_) => NavBloc()),
+          BlocProvider(create: (_) => CarritoBloc()),
         ],
         child: Builder(
           builder: (context) {

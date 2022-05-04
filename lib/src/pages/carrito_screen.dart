@@ -22,12 +22,9 @@ class _CarritoScreenState extends State<CarritoScreen> {
       },
       builder: (context, state) {
         return Scaffold(
-          body: Center(
-            child: TabLayout(
-              tabLength: state.lstProductos.length
-
+          body: TabLayout(
+            tabLength: state.lstProductos.length
             ),
-          ),
         );
       }
     );

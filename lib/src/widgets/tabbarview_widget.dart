@@ -10,14 +10,16 @@ class CustomTabBarViewWidget extends StatefulWidget {
   }) : super(key: key);
 
   final Map<String, List<ProductoModel>> lstProducts;
-
+  
   @override
   State<CustomTabBarViewWidget> createState() => _CustomTabBarViewWidgetState();
 }
 
+  
+
+
 class _CustomTabBarViewWidgetState extends State<CustomTabBarViewWidget> {
   final Widget boton = const BtnMasMenosWidget();
-
   bool mostrarBtn = false;
 
   @override
