@@ -39,14 +39,12 @@ class _CustomTabBarViewWidgetState extends State<CustomTabBarViewWidget> {
             subtitle: Text('\$' + e[i].precio),
             trailing: (!mostrarBtn)
             ?ElevatedButton(
-              child: const Text('Agregar al carrito'),
+              child: const Text('Agregar al carrito', style: TextStyle(color: Colors.white),),
               onPressed: (){
                 mostrarBtn = true;
-                setState(() {
-                  
-                });
+                setState(() {});
               },
-              )
+            )
             : const BtnMasMenosWidget()
           )
           ),).toList()
