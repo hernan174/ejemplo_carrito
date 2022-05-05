@@ -1,7 +1,9 @@
 import 'dart:io';
+import 'package:app_pedidos/src/models/detalle_carrito.dart';
 import 'package:flutter/material.dart';
-import 'package:app_pedidos/src/widgets/widgets.dart';
 import 'package:app_pedidos/src/models/producto.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../bloc/blocs.dart';
 
 class CustomTabBarViewWidget extends StatefulWidget {
   CustomTabBarViewWidget({
@@ -15,15 +17,16 @@ class CustomTabBarViewWidget extends StatefulWidget {
   State<CustomTabBarViewWidget> createState() => _CustomTabBarViewWidgetState();
 }
 
-  
-
-
 class _CustomTabBarViewWidgetState extends State<CustomTabBarViewWidget> {
-  final Widget boton = const BtnMasMenosWidget();
+  
   bool mostrarBtn = false;
-
+  
+    int cant = 0;
   @override
   Widget build(BuildContext context) {
+    
+    DetalleCarritoModel alCarrito = DetalleCarritoModel();
+
     return TabBarView(
       physics: const BouncingScrollPhysics(),
       children: widget.lstProducts.values
@@ -39,7 +42,9 @@ class _CustomTabBarViewWidgetState extends State<CustomTabBarViewWidget> {
             ),
             title: Text(e[i].nombre),
             subtitle: Text('\$' + e[i].precio),
-            trailing: (!mostrarBtn)
+            trailing: 
+            
+            (!mostrarBtn)
             ?ElevatedButton(
               child: const Text('Agregar al carrito', style: TextStyle(color: Colors.white),),
               onPressed: (){
@@ -47,7 +52,64 @@ class _CustomTabBarViewWidgetState extends State<CustomTabBarViewWidget> {
                 setState(() {});
               },
             )
-            : const BtnMasMenosWidget()
+            : Container(
+              
+              width: 100,
+              child: Row(
+                children: [
+                  GestureDetector(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                      decoration: const BoxDecoration(
+                        color:  Colors.lightGreen,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          bottomLeft: Radius.circular(10)),
+                      ),
+                      child: const Text('-', style: TextStyle(fontSize: 18),),
+                    ),
+                    onTap: (){
+                      (cant > 0) ? cant-- : cant = 0;
+                      alCarrito.cantidad = cant;
+
+                      context.read<CarritoBloc>()
+                      .add(OnAgregaItemCarrito(cant, e[i]));
+                      setState(() {});
+                    },
+                  ),
+                  Container(
+                    color: Colors.green.shade50,
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                    child: Text('$cant', style: const TextStyle(fontSize: 18),),
+                  ),
+                  GestureDetector(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                      decoration: const BoxDecoration(
+                        color:  Colors.lightGreen,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(10),
+                          bottomRight: Radius.circular(10)),
+                      ),
+                      child: const Text('+', style: TextStyle(fontSize: 18),),
+                    ),
+                    onTap: (){
+                      cant++;
+                      alCarrito.cantidad = cant;
+                      alCarrito.idProducto = e[i].idProducto!;
+                      
+                      context.read<CarritoBloc>()
+                      .add(OnAgregaItemCarrito(cant, e[i] ));
+                      setState(() {});
+
+                    },
+                  ),
+                ],
+              ),
+            )
+            
+            
+            
           )
           ),).toList()
 

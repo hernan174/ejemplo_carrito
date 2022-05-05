@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:app_pedidos/src/models/producto.dart';
@@ -10,19 +9,15 @@ import 'package:app_pedidos/src/bloc/blocs.dart';
 
     final int tabLength;
 
-  const TabLayout({Key? key, required this.tabLength,}) : super(key: key);
+    const TabLayout({Key? key, required this.tabLength,}) : super(key: key);
     @override
-    State<StatefulWidget> createState() {
-      return _TabLayoutState();
-    }
-  
+    State<StatefulWidget> createState() {return _TabLayoutState();}
   }
   
   class _TabLayoutState extends State<TabLayout> with TickerProviderStateMixin {
 
     
     late TabController _tabController;
-    List lstCarrito = [1,2,3];
 
   _TabLayoutState();
   
@@ -40,11 +35,7 @@ import 'package:app_pedidos/src/bloc/blocs.dart';
       return BlocConsumer<ProductoBloc, ProductoState>(
       listenWhen: (previous, current) => !current.isWorking,
       listener: (context, state) {
-        if (state.accion == 'blocOnNuevaProducto' ||
-            state.accion == 'blocOnModificarProducto') {
-          Navigator.pushNamed(context, 'NewProduct');
-          log('======>Navigator.pushNamed(context, NewProduct)');
-        }
+        
         setState(() {
           context.read<NavBloc>().add(GetScreen('Carrito'));
         });
@@ -67,16 +58,25 @@ import 'package:app_pedidos/src/bloc/blocs.dart';
                 const Expanded(
                   child: MiTabBarwidget(),
                 ),
-                Container(
-                  color: Colors.orange,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Items: ' + lstCarrito.length.toString(), style: const TextStyle( fontSize: 26, color: Colors.white),),
-                      Text('Total: \$' + (lstCarrito.length*3).toString(), style: const TextStyle( fontSize: 26, color: Colors.white),),
-                    ]
-                  ),
-                )
+                BlocConsumer<CarritoBloc, CarritoState>(
+                  listener: (context, state) {
+                                        
+                  },
+                  builder: (context, state){
+                    return Container(
+                    color: Colors.orange,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Items: ' + state.carrito.cantItems.toString(), style: const TextStyle( fontSize: 26, color: Colors.white),),
+                        Text('Total: \$' + (state.lstItemCarrito[0].producto!.precio).toString(), style: const TextStyle( fontSize: 26, color: Colors.white),),
+                      ]
+                    ),
+                  );
+                  },
+                  
+                ),
+                
               ],
             ),
           ),
@@ -101,7 +101,7 @@ class MiTabBarwidget extends StatelessWidget {
 
     return Scaffold(
       appBar: customTabBarWidget(lstProducts),
-      body: CustomTabBarViewWidget(lstProducts: lstProducts),
+      body: CustomTabBarViewWidget(lstProducts: lstProducts,),
     );
   }
 }
@@ -116,7 +116,6 @@ class MiTabBarwidget extends StatelessWidget {
       labelColor: Colors.white,
       unselectedLabelColor: Colors.grey,
       labelStyle: const TextStyle(fontWeight: FontWeight.bold,),
-      unselectedLabelStyle: const TextStyle(fontStyle: FontStyle.italic),
       indicatorColor: Colors.lightGreen,
       indicatorSize: TabBarIndicatorSize.tab,
       indicatorPadding: const EdgeInsets.all(5),

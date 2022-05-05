@@ -5,6 +5,5 @@ export 'package:app_pedidos/src/widgets/custom_appbar_widget.dart';
 export 'package:app_pedidos/src/widgets/pestanas_widget.dart';
 export 'package:app_pedidos/src/widgets/header_widget.dart';
 export 'package:app_pedidos/src/widgets/custom_drawer_widget.dart';
-export 'package:app_pedidos/src/widgets/TabBar_widget.dart';
-export 'package:app_pedidos/src/widgets/btn_masmenos_widget.dart';
+export 'package:app_pedidos/src/widgets/tabbar_widget.dart';
 export 'package:app_pedidos/src/widgets/tabbarview_widget.dart';
