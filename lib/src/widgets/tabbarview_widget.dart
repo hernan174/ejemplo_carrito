@@ -1,12 +1,11 @@
 import 'dart:io';
-import 'package:app_pedidos/src/models/detalle_carrito.dart';
 import 'package:flutter/material.dart';
 import 'package:app_pedidos/src/models/producto.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/blocs.dart';
 
 class CustomTabBarViewWidget extends StatefulWidget {
-  CustomTabBarViewWidget({
+  const CustomTabBarViewWidget({
     Key? key,
     required this.lstProducts,
   }) : super(key: key);
@@ -20,12 +19,12 @@ class CustomTabBarViewWidget extends StatefulWidget {
 class _CustomTabBarViewWidgetState extends State<CustomTabBarViewWidget> {
   
   bool mostrarBtn = false;
-  
-    int cant = 0;
+  int cant = 0;
+  ProductoModel alCarrito = ProductoModel();
+
   @override
   Widget build(BuildContext context) {
     
-    DetalleCarritoModel alCarrito = DetalleCarritoModel();
 
     return TabBarView(
       physics: const BouncingScrollPhysics(),
@@ -70,8 +69,7 @@ class _CustomTabBarViewWidgetState extends State<CustomTabBarViewWidget> {
                     ),
                     onTap: (){
                       (cant > 0) ? cant-- : cant = 0;
-                      alCarrito.cantidad = cant;
-
+                      alCarrito = e[i];
                       context.read<CarritoBloc>()
                       .add(OnAgregaItemCarrito(cant, e[i]));
                       setState(() {});
@@ -95,11 +93,9 @@ class _CustomTabBarViewWidgetState extends State<CustomTabBarViewWidget> {
                     ),
                     onTap: (){
                       cant++;
-                      alCarrito.cantidad = cant;
-                      alCarrito.idProducto = e[i].idProducto!;
-                      
+                      alCarrito = e[i];
                       context.read<CarritoBloc>()
-                      .add(OnAgregaItemCarrito(cant, e[i] ));
+                      .add(OnAgregaItemCarrito(cant, alCarrito ));
                       setState(() {});
 
                     },

@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 
 
-class TabsWidget extends StatelessWidget {
+class TabsWidget extends StatefulWidget {
   const TabsWidget({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<TabsWidget> createState() => _TabsWidgetState();
+}
+
+class _TabsWidgetState extends State<TabsWidget> {
+
+  bool isSelected = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,41 +33,64 @@ class TabsWidget extends StatelessWidget {
   }
 }
 
-class BtnIzqWidget extends StatelessWidget {
+class BtnIzqWidget extends StatefulWidget {
+
+
   const BtnIzqWidget({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<BtnIzqWidget> createState() => _BtnIzqWidgetState();
+}
+
+class _BtnIzqWidgetState extends State<BtnIzqWidget> {
+  bool isSelected = false;
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Colors.lightGreen,
-      ),
+    return GestureDetector(
+      onTap:() {
+        (isSelected == false) ? isSelected = true : isSelected = false;
+        setState(() {});
+        print(isSelected.toString());
+      },
       child: Container(
-        padding: const EdgeInsets.only(top: 5),
         decoration: const BoxDecoration(
-          color:  Color.fromARGB(255, 228, 228, 228),
-          borderRadius: BorderRadius.only(topRight: Radius.circular(15)),
+          color: Colors.lightGreen,
         ),
-        alignment: Alignment.topCenter,
-        height: 32,
-        width: 130,
-        child: const Center(
-          child: Text('Ofertas',
-          style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.w600),
-          )
+        child: Container(
+          padding: const EdgeInsets.only(top: 5),
+          decoration: const BoxDecoration(
+            color:  Color.fromARGB(255, 228, 228, 228),
+            borderRadius: BorderRadius.only(topRight: Radius.circular(15)),
+          ),
+          alignment: Alignment.topCenter,
+          height: 32,
+          width: 130,
+          child: const Center(
+            child: Text('Ofertas',
+            style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.w600),
+            )
+          ),
         ),
       ),
     );
   }
 }
 
-class BtnDerWidget extends StatelessWidget {
+class BtnDerWidget extends StatefulWidget {
   const BtnDerWidget({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<BtnDerWidget> createState() => _BtnDerWidgetState();
+}
+
+class _BtnDerWidgetState extends State<BtnDerWidget> {
+
+  
   @override
   Widget build(BuildContext context) {
     return Container(

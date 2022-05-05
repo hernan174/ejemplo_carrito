@@ -19,6 +19,7 @@ import 'package:app_pedidos/src/bloc/blocs.dart';
     
     late TabController _tabController;
 
+                    
   _TabLayoutState();
   
     @override
@@ -58,18 +59,29 @@ import 'package:app_pedidos/src/bloc/blocs.dart';
                 const Expanded(
                   child: MiTabBarwidget(),
                 ),
+                  
                 BlocConsumer<CarritoBloc, CarritoState>(
                   listener: (context, state) {
-                                        
+
                   },
                   builder: (context, state){
+                    
+                    int subtotal = 0;
+
+                    state.lstItemCarrito.map((e) {
+                     setState(() {
+                       subtotal = subtotal + int.parse(e.producto!.precio);
+                     });
+                    },);
+
                     return Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                     color: Colors.orange,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Items: ' + state.carrito.cantItems.toString(), style: const TextStyle( fontSize: 26, color: Colors.white),),
-                        Text('Total: \$' + (state.carrito.cantItems).toString(), style: const TextStyle( fontSize: 26, color: Colors.white),),
+                        Text('Items: ' + state.lstItemCarrito.length.toString(), style: const TextStyle( fontSize: 26, color: Colors.white),),
+                        Text('Total: ' + subtotal.toString(), style: const TextStyle( fontSize: 26, color: Colors.white),),
                       ]
                     ),
                   );
