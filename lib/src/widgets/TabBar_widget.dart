@@ -69,7 +69,7 @@ import 'package:app_pedidos/src/bloc/blocs.dart';
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('Items: ' + state.carrito.cantItems.toString(), style: const TextStyle( fontSize: 26, color: Colors.white),),
-                        Text('Total: \$' + (state.lstItemCarrito[0].producto!.precio).toString(), style: const TextStyle( fontSize: 26, color: Colors.white),),
+                        Text('Total: \$' + (state.carrito.cantItems).toString(), style: const TextStyle( fontSize: 26, color: Colors.white),),
                       ]
                     ),
                   );
