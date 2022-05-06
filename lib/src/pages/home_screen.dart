@@ -45,17 +45,11 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: Column(
-                children: [
+                children:  [
                   const HeaderWidget(),
                   const TabsWidget(),
-                  Expanded(
-                      child: ListView(children: [
-                    ...state.lstProductos.entries
-                        .map((e) => ItemHomeViewWidget(
-                            categoria: e.key, productos: e.value))
-                        .toList()
-                    ])
-                  )
+                  //TabLayoutExample(),
+                  ListadoWidget()
                 ],
               ),
             ),

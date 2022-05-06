@@ -102,12 +102,17 @@ class _NewProductScreenState extends State<NewProductScreen> {
 
                       (modeloVisual.pathImagen.isEmpty)
                       ? const Image (height: 200, image: AssetImage('assets/default.png'))
-                      : Hero(
-                          tag: modeloVisual.idProducto ?? '',
-                          child: Image.file(
-                            File(modeloVisual.pathImagen),
-                            height: 200,
-                          )
+                      : Column(
+                          children: [
+                            Hero(
+                              tag: modeloVisual.idProducto ?? '',
+                              child: Image.file(
+                                File(modeloVisual.pathImagen),
+                                height: 200,
+                              )
+                            ),
+                            const BtnEliminarWidget(),
+                          ]
                         ),
                       
                       BtnGuardarWidget(modeloVisual: modeloVisual),
@@ -176,6 +181,35 @@ class _NewProductScreenState extends State<NewProductScreen> {
     );
   }
 
+}
+
+class BtnEliminarWidget extends StatelessWidget {
+  const BtnEliminarWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.orange[300])),
+      child: Container(
+        alignment: Alignment.center,
+        width: double.infinity,
+        child: const Text('Eliminar', style: TextStyle(color: Colors.white),)),
+        onPressed: (){
+          //context.read<ProductoBloc>().add(DeleteProducto(modeloVisual.idProducto));
+          final snackBar = SnackBar(
+            duration: const Duration(milliseconds: 500),
+            content: const Text('Registro eliminado'),
+            action: SnackBarAction(
+              label: 'Entendido',
+              onPressed: () {},
+            ),
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        },
+    );
+  }
 }
 
 class BtnGuardarWidget extends StatelessWidget {

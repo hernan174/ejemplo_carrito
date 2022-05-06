@@ -7,3 +7,5 @@ export 'package:app_pedidos/src/widgets/header_widget.dart';
 export 'package:app_pedidos/src/widgets/custom_drawer_widget.dart';
 export 'package:app_pedidos/src/widgets/tabbar_widget.dart';
 export 'package:app_pedidos/src/widgets/tabbarview_widget.dart';
+export 'package:app_pedidos/src/widgets/home_tabs_widget.dart';
+export 'package:app_pedidos/src/widgets/home_listado.dart';
