@@ -68,7 +68,7 @@ class _ExpandCategoriasState extends State<ExpandCategorias> {
 
   Widget _buildPanel() {
     return Theme(
-            data: Theme.of(context).copyWith(cardColor: const Color.fromARGB(255, 233, 245, 215)),
+            data: Theme.of(context).copyWith(cardColor:  Colors.lightGreen[100]),
             child: ExpansionPanelList(
         expansionCallback: (int index, bool isExpanded) {
           setState(() {

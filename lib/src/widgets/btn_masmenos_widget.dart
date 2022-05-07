@@ -1,63 +1,32 @@
-import 'dart:io';
-import 'package:flutter/material.dart';
+import 'package:app_pedidos/src/bloc/blocs.dart';
 import 'package:app_pedidos/src/models/producto.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../bloc/blocs.dart';
 
-class CustomTabBarViewWidget extends StatefulWidget {
-  const CustomTabBarViewWidget({
+class BtnMaaasMeeenos extends StatefulWidget {
+
+  List<ProductoModel> element = [];
+  int index = 0;
+
+  BtnMaaasMeeenos({
     Key? key,
-    required this.lstProducts,
-  }) : super(key: key);
+    required element,
+    required index
+    }) : super(key: key);
 
-  final Map<String, List<ProductoModel>> lstProducts;
-  
   @override
-  State<CustomTabBarViewWidget> createState() => _CustomTabBarViewWidgetState();
+  State<BtnMaaasMeeenos> createState() => _BtnMaaasMeeenosState();
 }
 
-class _CustomTabBarViewWidgetState extends State<CustomTabBarViewWidget> {
-  
-  bool mostrarBtn = false;
-  ProductoModel alCarrito =ProductoModel();
+class _BtnMaaasMeeenosState extends State<BtnMaaasMeeenos> {
   int cant = 0;
+  ProductoModel alCarrito = ProductoModel();
 
+  
   @override
   Widget build(BuildContext context) {
-
-    return TabBarView(
-      physics: const BouncingScrollPhysics(),
-      children: widget.lstProducts.values
-        .map((e) => ListView.builder(
-          itemCount: e.length,
-          itemBuilder: (_, i) => ListTile(
-            leading: Image.file(
-              File(e[i].pathImagen),
-              height: 100,
-              width: 100,
-              alignment: Alignment.bottomCenter,
-              fit: BoxFit.cover,
-            ),
-            title: Text(e[i].nombre),
-            subtitle: Text('\$' + e[i].precio),
-            trailing: 
-            
-            (!mostrarBtn)
-            ? mostrarBtnMasMenosWidget()
-            : btnMasMenosWidget(e, i, context)
-
-          )
-          ),).toList()
-
-    );
-  }
-
-  
-
-  Widget btnMasMenosWidget(List<ProductoModel> e, int i, BuildContext context) {
-//int cant = 0;
     return Container(
-      width: 90,
+      width: 100,
       child: Row(
         children: [
           GestureDetector(
@@ -73,10 +42,10 @@ class _CustomTabBarViewWidgetState extends State<CustomTabBarViewWidget> {
             ),
             onTap: (){
               (cant > 0) ? cant-- : cant = 0;
-              alCarrito = e[i];
-              setState(() {});
+              alCarrito = widget.element[widget.index];
               context.read<CarritoBloc>()
-              .add(OnAgregaItemCarrito(cant, e[i]));
+              .add(OnAgregaItemCarrito(cant, widget.element[widget.index]));
+              setState(() {});
             },
           ),
           Container(
@@ -97,24 +66,14 @@ class _CustomTabBarViewWidgetState extends State<CustomTabBarViewWidget> {
             ),
             onTap: (){
               cant++;
-              setState(() {});
-              alCarrito = e[i];
+              alCarrito = widget.element[widget.index];
               context.read<CarritoBloc>()
               .add(OnAgregaItemCarrito(cant, alCarrito ));
+              setState(() {});
             },
           ),
         ],
       ),
-    );
-  }
-
-  Widget mostrarBtnMasMenosWidget() {
-    return ElevatedButton(
-      child: const Text('Agregar al carrito', style: TextStyle(color: Colors.white),),
-      onPressed: (){
-        mostrarBtn = true;
-        setState(() {});
-      },
     );
   }
 }

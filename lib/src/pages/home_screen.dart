@@ -38,8 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
           drawer: const CustomDrawer(),
           appBar: const CustomAppBarWidget(),
           body: Container(
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 228, 228, 228)
+            decoration: BoxDecoration(
+              color: Colors.grey[300]
             ),
             width: double.infinity,
             child: Padding(

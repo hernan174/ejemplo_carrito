@@ -76,15 +76,19 @@ import 'package:app_pedidos/src/bloc/blocs.dart';
 
                     return Container(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
-                    color: Colors.orange,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Items: ' + state.lstItemCarrito.length.toString(), style: const TextStyle( fontSize: 26, color: Colors.white),),
-                        Text('Total: ' + subtotal.toString(), style: const TextStyle( fontSize: 26, color: Colors.white),),
-                      ]
-                    ),
-                  );
+                      color: Colors.orange,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          
+                          Chip(
+                            backgroundColor: Colors.lightGreen[700],
+                            avatar: const Icon(Icons.numbers, color: Colors.white,),
+                            label: Text('Items: ' + state.lstItemCarrito.length.toString(), style: const TextStyle( fontSize: 20, color: Colors.white),)),
+                          Text('Total: ' + subtotal.toString(), style: const TextStyle( fontSize: 20, color: Colors.white),),
+                        ]
+                      ),
+                    );
                   },
                   
                 ),

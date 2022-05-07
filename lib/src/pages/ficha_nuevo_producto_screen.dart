@@ -35,7 +35,7 @@ class _NewProductScreenState extends State<NewProductScreen> {
     return Scaffold(
         drawer: const CustomDrawer(),
         appBar: const CustomAppBarWidget(),
-        backgroundColor: const Color.fromARGB(255, 233, 245, 215),
+        backgroundColor: Colors.lightGreen[100],
         body: BlocConsumer<ProductoBloc, ProductoState>(
           listenWhen: (previous, current) => !current.isWorking,
           listener: (context, state) {

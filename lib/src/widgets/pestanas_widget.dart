@@ -17,7 +17,7 @@ class _TabsWidgetState extends State<TabsWidget> {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
-      color: const Color.fromARGB(255, 228, 228, 228),
+      color: Colors.grey[300],
       width: double.infinity,
       height: 40,
       child: Row(
@@ -61,9 +61,9 @@ class _BtnIzqWidgetState extends State<BtnIzqWidget> {
         ),
         child: Container(
           padding: const EdgeInsets.only(top: 5),
-          decoration: const BoxDecoration(
-            color:  Color.fromARGB(255, 228, 228, 228),
-            borderRadius: BorderRadius.only(topRight: Radius.circular(15)),
+          decoration: BoxDecoration(
+            color:  Colors.grey[300],
+            borderRadius: const BorderRadius.only(topRight: Radius.circular(15)),
           ),
           alignment: Alignment.topCenter,
           height: 32,
@@ -99,9 +99,9 @@ class _BtnDerWidgetState extends State<BtnDerWidget> {
       ),
       child: Container(
         padding: const EdgeInsets.only(top: 5),
-        decoration: const BoxDecoration(
-          color:  Color.fromARGB(255, 228, 228, 228),
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(15)),
+        decoration: BoxDecoration(
+          color:  Colors.grey[300],
+          borderRadius: const BorderRadius.only(topLeft: Radius.circular(15)),
         ),
         alignment: Alignment.topCenter,
         height: 32,
