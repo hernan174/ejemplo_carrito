@@ -141,7 +141,7 @@ class _NewProductScreenState extends State<NewProductScreen> {
   }
 
   Widget prodPrecioWidget(ProductoState state) {
-    return Container(
+    return SizedBox(
       width: 90,
       child: TextFormField(
         style: const TextStyle(

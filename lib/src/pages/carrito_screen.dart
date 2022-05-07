@@ -1,7 +1,7 @@
-import 'package:app_pedidos/src/bloc/blocs.dart';
-import 'package:app_pedidos/src/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:app_pedidos/src/bloc/blocs.dart';
+import 'package:app_pedidos/src/widgets/widgets.dart';
 
 class CarritoScreen extends StatefulWidget {
    

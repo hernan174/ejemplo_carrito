@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:app_pedidos/src/utils/utils.dart';
 import 'package:app_pedidos/src/bloc/blocs.dart';
@@ -10,6 +11,10 @@ void main() {
     runApp(const MyApp());
   }, blocObserver: SimpleBlocObserver());
   runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [
+    SystemUiOverlay.bottom, 
+  ]);
 }
 
 class MyApp extends StatelessWidget {

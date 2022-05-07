@@ -45,9 +45,9 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: Column(
-                children:  [
-                  const HeaderWidget(),
-                  const TabsWidget(),
+                children:  const [
+                  HeaderWidget(),
+                  TabsWidget(),
                   //TabLayoutExample(),
                   ListadoWidget()
                 ],

@@ -25,7 +25,7 @@ class _BtnMaaasMeeenosState extends State<BtnMaaasMeeenos> {
   
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 100,
       child: Row(
         children: [

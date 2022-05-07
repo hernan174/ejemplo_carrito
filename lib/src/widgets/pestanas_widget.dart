@@ -68,9 +68,14 @@ class _BtnIzqWidgetState extends State<BtnIzqWidget> {
           alignment: Alignment.topCenter,
           height: 32,
           width: 130,
-          child: const Center(
+          child: Center(
             child: Text('Ofertas',
-            style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.w600),
+            style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.w600, shadows: [
+            Shadow(
+                color: Colors.black.withOpacity(0.6),
+                offset: const Offset(1, 1),
+                blurRadius: 10),
+          ]),
             )
           ),
         ),
@@ -106,9 +111,14 @@ class _BtnDerWidgetState extends State<BtnDerWidget> {
         alignment: Alignment.topCenter,
         height: 32,
         width: 130,
-        child: const Center(
+        child: Center(
           child: Text('Favoritos',
-          style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.w600),
+          style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.w600, shadows: [
+            Shadow(
+                color: Colors.black.withOpacity(0.6),
+                offset: const Offset(1, 1),
+                blurRadius: 10),
+          ]),
           )
         ),
       ),
