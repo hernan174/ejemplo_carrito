@@ -84,6 +84,7 @@ class CarritoBloc extends Bloc<CarritoEvent, CarritoState> {
       nuevoItem.cantidad = event.cantidad;
       nuevoItem.idCarrito = state.carrito.idCarrito ?? 0;
       nuevoItem.idProducto = event.producto.idProducto ?? 0;
+      nuevoItem.producto = event.producto;
       lstItemCarrito.add(nuevoItem);
     }
 

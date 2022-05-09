@@ -47,15 +47,7 @@ import 'package:app_pedidos/src/bloc/blocs.dart';
           child: SafeArea(
             child: Column(
               children: [
-                Container(
-                  alignment: Alignment.center,
-                  color: Colors.lightGreen,
-                  height: 50,
-                  width: double.infinity,
-                  child: const Text(
-                    'Mis Compras', 
-                    style: TextStyle(fontSize:20, color: Colors.white, fontWeight: FontWeight.bold),),
-                ),
+                const Title(),
                 const Expanded(
                   child: MiTabBarwidget(),
                 ),
@@ -69,11 +61,20 @@ import 'package:app_pedidos/src/bloc/blocs.dart';
                   builder: (context, state){
                     
                     int subtotal = 0;
+                    //int precios = (state.lstItemCarrito.isEmpty) ? 0 : int.parse(state.lstItemCarrito.last.producto!.precio);
+                    //subtotal = subtotal + precios;
 
-                    state.lstItemCarrito.map((e) {
-                      subtotal = subtotal + int.parse(e.producto!.precio);
-                      setState(() {});
-                    },);
+                    state.lstItemCarrito.forEach((e) {
+                      subtotal = int.parse(e.producto!.precio) + subtotal;
+                      print('Nuevo item: ' + e.producto!.precio);
+                      print('Subtotal actual: $subtotal');
+                     });
+                    
+
+                    // state.lstItemCarrito.map((e) {
+                    //   return subtotal = subtotal + int.parse(e.producto!.precio);
+                    // },);
+
 
                     return Container(
                       padding: const EdgeInsets.all(10),
@@ -82,7 +83,7 @@ import 'package:app_pedidos/src/bloc/blocs.dart';
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(state.lstItemCarrito.length.toString() + ' items  ' + '   |   Total: \$' 
-                           + subtotal.toString(), style: const TextStyle( fontSize: 20, color: Colors.white),),
+                           + (subtotal).toString(), style: const TextStyle( fontSize: 20, color: Colors.white),),
                           ElevatedButton(
                             child: const Text('Ver Carrito', style: TextStyle(color: Colors.white, fontSize: 18)),
                             onPressed: () {
@@ -104,6 +105,25 @@ import 'package:app_pedidos/src/bloc/blocs.dart';
       );
   }
 
+}
+
+class Title extends StatelessWidget {
+  const Title({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      color: Colors.lightGreen,
+      height: 50,
+      width: double.infinity,
+      child: const Text(
+        'Mis Compras', 
+        style: TextStyle(fontSize:20, color: Colors.white, fontWeight: FontWeight.bold),),
+    );
+  }
 }
 
 class MiTabBarwidget extends StatelessWidget {

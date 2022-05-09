@@ -19,7 +19,8 @@ class DetalleCarritoModel {
       {this.idDetalleCarrito,
       this.idCarrito = 0,
       this.idProducto = 0,
-      this.cantidad = 0});
+      this.cantidad = 0,
+      this.producto,});
 
   factory DetalleCarritoModel.fromJson(Map<String, dynamic> json) =>
       DetalleCarritoModel(
@@ -27,6 +28,7 @@ class DetalleCarritoModel {
         idCarrito: json["IdCarrito"],
         idProducto: json["IdProducto"],
         cantidad: json["Cantidad"],
+        producto: json["Producto"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -34,5 +36,6 @@ class DetalleCarritoModel {
         "IdCarrito": idCarrito,
         "IdProducto": idProducto,
         "Cantidad": cantidad,
+        "Producto": producto,
       };
 }
