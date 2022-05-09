@@ -44,7 +44,7 @@ class _CustomTabBarViewWidgetState extends State<CustomTabBarViewWidget> {
             
             (!mostrarBtn)
             ? mostrarBtnMasMenosWidget()
-            : btnMasMenosWidget(e, i, context)
+            : btnMasMenosWidget(e, i)
 
           )
           ),).toList()
@@ -54,8 +54,8 @@ class _CustomTabBarViewWidgetState extends State<CustomTabBarViewWidget> {
 
   
 
-  Widget btnMasMenosWidget(List<ProductoModel> e, int i, BuildContext context) {
-//int cant = 0;
+  Widget btnMasMenosWidget(List<ProductoModel> e, int i,) {
+    
     return SizedBox(
       width: 90,
       child: Row(

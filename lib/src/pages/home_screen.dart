@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (context, state) {
         return Scaffold(
           drawer: const CustomDrawer(),
-          appBar: const CustomAppBarWidget(),
+          appBar: CustomAppBarWidget(title: 'Delivery app',),
           body: Container(
             decoration: BoxDecoration(
               color: Colors.grey[300]

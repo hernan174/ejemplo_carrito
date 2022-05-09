@@ -47,7 +47,7 @@ import 'package:app_pedidos/src/bloc/blocs.dart';
           child: SafeArea(
             child: Column(
               children: [
-                const Title(),
+                CustomAppBarWidget(title: 'Mis compras',),
                 const Expanded(
                   child: MiTabBarwidget(),
                 ),
@@ -87,6 +87,7 @@ import 'package:app_pedidos/src/bloc/blocs.dart';
                           ElevatedButton(
                             child: const Text('Ver Carrito', style: TextStyle(color: Colors.white, fontSize: 18)),
                             onPressed: () {
+                              
                               Navigator.pushNamed(context, 'ConfirmarCarrito');
                             },
                           )
@@ -107,24 +108,6 @@ import 'package:app_pedidos/src/bloc/blocs.dart';
 
 }
 
-class Title extends StatelessWidget {
-  const Title({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      color: Colors.lightGreen,
-      height: 50,
-      width: double.infinity,
-      child: const Text(
-        'Mis Compras', 
-        style: TextStyle(fontSize:20, color: Colors.white, fontWeight: FontWeight.bold),),
-    );
-  }
-}
 
 class MiTabBarwidget extends StatelessWidget {
 

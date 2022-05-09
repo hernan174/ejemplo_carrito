@@ -34,7 +34,7 @@ class _NewProductScreenState extends State<NewProductScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: const CustomDrawer(),
-        appBar: const CustomAppBarWidget(),
+        appBar: CustomAppBarWidget(title: 'Nuevo producto'),
         backgroundColor: Colors.lightGreen[100],
         body: BlocConsumer<ProductoBloc, ProductoState>(
           listenWhen: (previous, current) => !current.isWorking,

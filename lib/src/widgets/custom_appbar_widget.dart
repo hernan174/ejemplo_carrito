@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class CustomAppBarWidget extends StatelessWidget implements PreferredSizeWidget{
+  String title;
 
   @override
   Size get preferredSize => const Size.fromHeight(55);
-  const CustomAppBarWidget({
+  CustomAppBarWidget({
     Key? key,
+    required this.title
   }) : super(key: key);
 
   @override
@@ -16,7 +18,7 @@ class CustomAppBarWidget extends StatelessWidget implements PreferredSizeWidget{
         onPressed: () => Scaffold.of(context).openDrawer(),
         ),
       elevation: 0,
-      title: const Text('Delivery App', style: TextStyle(color: Colors.white),),
+      title: Text(title, style: const TextStyle(color: Colors.white),),
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 20),
