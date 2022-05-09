@@ -62,30 +62,33 @@ import 'package:app_pedidos/src/bloc/blocs.dart';
                   
                 BlocConsumer<CarritoBloc, CarritoState>(
                   listener: (context, state) {
-
+                    if (state.accion == 'OnAgregaItemCarrito' && state.error.isEmpty) {
+                      context.read<CarritoBloc>().add(OnGuardarCarrito());
+                    }
                   },
                   builder: (context, state){
                     
                     int subtotal = 0;
 
                     state.lstItemCarrito.map((e) {
-                     setState(() {
-                       subtotal = subtotal + int.parse(e.producto!.precio);
-                     });
+                      subtotal = subtotal + int.parse(e.producto!.precio);
+                      setState(() {});
                     },);
 
                     return Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      padding: const EdgeInsets.all(10),
                       color: Colors.orange,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          
-                          Chip(
-                            backgroundColor: Colors.lightGreen[700],
-                            avatar: const Icon(Icons.numbers, color: Colors.white,),
-                            label: Text('Items: ' + state.lstItemCarrito.length.toString(), style: const TextStyle( fontSize: 20, color: Colors.white),)),
-                          Text('Total: ' + subtotal.toString(), style: const TextStyle( fontSize: 20, color: Colors.white),),
+                          Text(state.lstItemCarrito.length.toString() + ' items  ' + '   |   Total: \$' 
+                           + subtotal.toString(), style: const TextStyle( fontSize: 20, color: Colors.white),),
+                          ElevatedButton(
+                            child: const Text('Ver Carrito', style: TextStyle(color: Colors.white, fontSize: 18)),
+                            onPressed: () {
+                              Navigator.pushNamed(context, 'ConfirmarCarrito');
+                            },
+                          )
                         ]
                       ),
                     );

@@ -39,9 +39,11 @@ class MyApp extends StatelessWidget {
                   ),
                   initialRoute: 'Home',
                   routes: {
-                    'Home': (_) => const HomeScreen(),
-                    'NewProduct': (_) => const NewProductScreen(),
-                    'Carrito' : (_) => const CarritoScreen(),
+                    'Home'             : (_) => const HomeScreen(),
+                    'NewProduct'       : (_) => const NewProductScreen(),
+                    'Carrito'          : (_) => const CarritoScreen(),
+                    'ConfirmarCarrito' : (_) => const ConfirmarScreen(),
+                    'Pagos'            : (_) => const PagosScreen(),
                   }),
             );
           },
