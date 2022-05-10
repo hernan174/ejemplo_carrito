@@ -39,6 +39,8 @@ class _ConfirmarScreenState extends State<ConfirmarScreen> {
                   trailing:  IconButton(
                     icon: Icon(Icons.delete, color: Colors.orange[300]),
                     onPressed: (){
+                      state.lstItemCarrito.remove(e);
+                      setState(() {  });
                       //context.read<ProductoBloc>().add(DeleteProducto(modeloVisual.idProducto));
                       final snackBar = SnackBar(
                         duration: const Duration(milliseconds: 500),
