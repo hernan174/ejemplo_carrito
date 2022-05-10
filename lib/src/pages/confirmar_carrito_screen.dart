@@ -20,6 +20,7 @@ class _ConfirmarScreenState extends State<ConfirmarScreen> {
     return Scaffold(
       appBar: CustomAppBarWidget(title: 'Confirme su pedido'),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: 
           state.lstItemCarrito
             .map((e) => Container(
